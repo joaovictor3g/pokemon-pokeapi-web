@@ -1,0 +1,107 @@
+.principal-container {
+    margin: 0;
+    padding: 20px;
+}
+
+
+.title-info {
+    margin: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.title-info p {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.table-container {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #666666; 
+    border-collapse: collapse;
+}
+
+.table-container tbody .initial-tr {
+    background: #333333;
+    color: #FFF;
+    font-weight: bold;
+    height: 50px;
+}
+
+.table-container tbody tr .td-name {
+    font-weight: bold;
+}
+
+.table-container tbody tr .image-td {
+    width: 200px;
+}
+
+.table-container tbody tr .image-td img {
+    width: 100px;
+    height: 100px;
+}
+
+.table-container tbody tr .id-td {
+    width: 200px;
+}
+
+.table-container tbody tr .actions-table {
+    width: 600px;
+}
+
+tr:nth-child(even) {
+    background: #FFF
+}
+tr:nth-child(odd) {
+    background: #EEE
+}
+
+button {
+    margin: 20px;
+    height: 40px;
+    width: 150px;
+    color: #FFF;
+}
+
+.actions-table button {
+    
+    border-radius: 5px;
+    border: 0;
+    font-weight: bold;
+    font-size: 14px;
+    background: crimson;
+}
+
+.actions-table .btn-1 {
+    background: #3366cc;
+}
+
+.actions {
+    text-align: center;
+}
+
+.actions button {
+    border-radius: 5px;
+    border: 0;
+    font-weight: bold;
+    font-size: 14px;
+    color: #FFF;
+}
+
+.actions .prev {
+    background:  crimson;
+}
+
+.actions .next {
+    background:#3366cc;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+button[disabled]:hover {
+    opacity: 0.5;
+}
