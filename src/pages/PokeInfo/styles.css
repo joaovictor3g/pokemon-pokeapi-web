@@ -1,0 +1,41 @@
+.initial {
+    text-align: center;
+}
+.initial img {
+    width: 500px;
+    height: 280px;
+    align-items: center;
+    text-align: center;
+}
+
+.principal {
+    align-items: center;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.principal .aside {
+    background: #ffF;
+    height: 350px;
+    font-size: 20px;
+    display: flex;
+    padding: 10px;
+}
+
+.principal .aside p span {
+    font-weight: bold;
+}
+
+.principal .image2 {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+
+.principal .aside .initial-span {
+    width: 100%;
+    background: #000000;
+    color: #FFF;
+    text-align: center;
+    
+}

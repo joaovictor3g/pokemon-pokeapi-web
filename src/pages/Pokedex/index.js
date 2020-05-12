@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -21,7 +22,7 @@ export default function Pokedex() {
     }, []);
 
     async function renderPokemons(page = 0) {
-        const response = await api.get(`/pokemon/?offset=${page}&limit=807`);
+        const response = await api.get(`/pokemon/?offset=${page}&limit=6`);
 
         console.log(page);
 
@@ -67,8 +68,14 @@ export default function Pokedex() {
                             <td className="id-td">{index+1}</td>
                             <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
                             <td className="image-td"><img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`} alt="pokemon"/></td>
-                            <td className="actions-table"><button className="btn-1">Informações</button><button>Capturar</button></td>
-                            
+                            <td className="actions-table">
+                                <button  className="btn-1">
+                                <Link to={`/pokedex/poke-info/${index+1}`} className="link">
+                                    Informações
+                                </Link>
+                                </button>
+                                <button>Capturar</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

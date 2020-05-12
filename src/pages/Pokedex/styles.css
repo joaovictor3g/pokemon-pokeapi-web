@@ -64,6 +64,7 @@ button {
     height: 40px;
     width: 150px;
     color: #FFF;
+    text-decoration: none;
 }
 
 .actions-table button {
@@ -77,6 +78,12 @@ button {
 
 .actions-table .btn-1 {
     background: #3366cc;
+    color: #FFF;
+}
+
+.actions-table .btn-1 .link {
+    color: #FFF;
+    text-decoration: none;
 }
 
 .actions {
