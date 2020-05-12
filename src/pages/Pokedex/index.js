@@ -10,23 +10,21 @@ import './styles.css';
 export default function Pokedex() {
     const [count, setCount] = useState('');
     const [pokemons, setPokemons] = useState([]);// eslint-disable-next-line
-    const [name, setName] = useState('');// eslint-disable-next-line
-    const [img, setImg] = useState([]);// eslint-disable-next-line
-    const [id, setId] = useState(1);
     const [pages, setPages] = useState(1);
     const [previousPage, setPreviousPage] = useState([]);
-    const [indice, setIndice] = useState(1);
-    const [limit, setLimit] = useState(5);
+    var [id, setID]= useState([]);
+    const [name, setName] = useState([]);
+    const [front_default, setFront] = useState([]);
+    const [limit, setLimit] = useState(5); 
+    let [response, setResponse] = useState([]);
 
     useEffect(() => {
         renderPokemons();
-      
+        //getId();
     }, []);
 
-    async function renderPokemons(page = 0) {
-        const response = await api.get(`/pokemon/?offset=${page}&limit=50`);
-
-        console.log(page);
+    async function renderPokemons(offset = 0, limits = 5) {
+        const response = await api.get(`/pokemon/?offset=${offset}&limit=${limits}`);
 
         setPokemons(response.data.results);
 
@@ -34,11 +32,17 @@ export default function Pokedex() {
 
         setPreviousPage(response.data.previous);
 
+        //console.log(offset);
+        //console.log(limits);
+
+        //setPokemons(pokemons.filter(pokemon => pokemon.name !== name));
+
     }
     
     function nextPage() {
         setPages(pages+1);
-        renderPokemons(pages);
+        setLimit(limit+1);
+        renderPokemons(pages, limit);
     }
 
     function goToPreviousPage() {
@@ -51,6 +55,18 @@ export default function Pokedex() {
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    async function getId(limits = 5) {
+        for (var i = 0; i < limits; i++) {
+           const response = await api.get(`/pokemon/${i+1}`);
+        
+           console.log(response.data.id, response.data.name);
+
+           setID(response.data.id);
+
+           setName(response.data.name);
+        }
     }
 
     return (
@@ -89,7 +105,6 @@ export default function Pokedex() {
                                 </button>
                                 <button>Capturar</button>
                             </td>
-        
                         </tr>
                     ))}
                 </tbody>
