@@ -11,7 +11,7 @@
 .principal {
     align-items: center;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .principal .aside {
@@ -19,7 +19,8 @@
     height: 350px;
     font-size: 20px;
     display: flex;
-    padding: 10px;
+    padding: 20px;
+    margin: 10px 100px;
 }
 
 .principal .aside p span {
@@ -32,10 +33,10 @@
     text-align: center;
 }
 
+
 .principal .aside .initial-span {
     width: 100%;
-    background: #000000;
-    color: #FFF;
+    color: #000;
     text-align: center;
     
 }

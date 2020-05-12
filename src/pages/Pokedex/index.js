@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaAngleRight } from 'react-icons/fa';
 
 import api from '../../services/api';
 
+//import Header from '../../components/Header';
 import './styles.css';
 
 export default function Pokedex() {
@@ -22,7 +24,7 @@ export default function Pokedex() {
     }, []);
 
     async function renderPokemons(page = 0) {
-        const response = await api.get(`/pokemon/?offset=${page}&limit=6`);
+        const response = await api.get(`/pokemon/?offset=${page}&limit=50`);
 
         console.log(page);
 
@@ -52,6 +54,17 @@ export default function Pokedex() {
     }
 
     return (
+        <>
+        <div className="Header-container">
+            <Link to="/" className="link-home">
+                Home
+            </Link>
+            <FaAngleRight size={20} color="#FFF" />
+            <Link to="/pokedex" className="pokedex-button">
+                Pokedex
+            </Link>
+        </div>
+        
         <div className="principal-container">
             <h1 className="title-info">Pokedex<p>({count} Pokemons)</p></h1>  
 
@@ -76,6 +89,7 @@ export default function Pokedex() {
                                 </button>
                                 <button>Capturar</button>
                             </td>
+        
                         </tr>
                     ))}
                 </tbody>
@@ -85,5 +99,6 @@ export default function Pokedex() {
                 <button className="next" onClick={nextPage}>Próximo</button> 
             </div>
         </div>
+        </>
     )
 }

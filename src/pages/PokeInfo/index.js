@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaAngleRight } from 'react-icons/fa';
 
 import api from '../../services/api';
 import pokeLogo from '../../assets/pokeLogo.png';
+
+import Home from '../../components/Header';
 
 import './styles.css';
 
@@ -33,7 +37,20 @@ export default function PokeInfo(props) {
     }
  
     return (
-        <>
+        <>  
+            <div className="Header-container">
+                <Link to="/" className="link-home">
+                    Home
+                </Link>
+                <FaAngleRight size={20} color="#FFF" />
+                <Link to="/pokedex" className="pokedex-button">
+                    Pokedex
+                </Link>
+                <FaAngleRight size={20} color="#FFF" />
+                <Link to={`/pokedex/poke-info/${id}`} className="pokedex-button">
+                    PokeInfo
+                </Link>
+        </div>
             <div className="initial">
                 <img src={pokeLogo} alt="Logo do pokémon" className="image1"/>
             </div>
@@ -41,7 +58,7 @@ export default function PokeInfo(props) {
                 <div className="aside">
                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`} className="image2" />
-                    <hr></hr>
+                    <hr />
                     <div className="infos-from-pokemon">
                         <p><span className="initial-span">Name:</span> {capitalizeFirstLetter(name)}</p>
                         <p><span>Weight:</span> {weight}</p>
