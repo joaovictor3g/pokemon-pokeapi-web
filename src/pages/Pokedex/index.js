@@ -54,12 +54,13 @@ export default function Pokedex() {
 
     async function getId(name) {
             try {
+                name = name.toLowerCase();
                 const response = await api.get(`/pokemon/${name}`);
 
                 history.push(`/pokedex/search/${response.data.id}`);
             
             } catch (err) {
-                alert('Pokemon not added yet!!!!')
+                alert(`Pokemon not added yet!!!!${name}`)
             }
 
     }
