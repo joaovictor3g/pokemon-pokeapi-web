@@ -22,6 +22,9 @@ export default function SearchPoke(props) {
         setImage(response.data.sprites.front_default);
 
     }
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     
     return (
         <>
@@ -50,8 +53,8 @@ export default function SearchPoke(props) {
                         <td></td>
                     </tr> 
                     <tr>
-                        <td>{id}</td>
-                        <td>{name_}</td>
+                        <td className="id-td">{id}</td>
+                        <td className="td-name">{capitalizeFirstLetter(name_)}</td>
                         <td className="image-td"><img src={pokeImage} alt="pokemon-image"/></td>
                         <td className="actions-table">
                             <button  className="btn-1">
