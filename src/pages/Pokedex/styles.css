@@ -3,15 +3,43 @@ div {
     padding: 0;
 }
 
+.search-pokemon {
+    width: 500px;
+    margin: 10px;
+    height: 60px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.search-button-container {
+    display: flex;
+}
+
+.search-button-container .search-button-frame {
+    height: 60px;
+    width: 70px;
+    border-radius: 5px;
+    border: 0;
+    background: crimson;
+    padding: 18px;
+}
+
+.search-button-container .search-button-frame svg {
+}
+
 .Header-container {
     width: 100%;
     height: 80px;
     background: #333333;
     padding: 20px;
-    margin: 0;
+
     text-align: left;   
     align-items: center;
     display: flex;
+    
+   
 }
 
 .Header-container .link-home {
@@ -84,6 +112,10 @@ div {
     color: #FFF;
     font-weight: bold;
     height: 50px;
+}
+
+.table-container tbody tr td {
+    font-size: 18px;
 }
 
 .table-container tbody tr .td-name {

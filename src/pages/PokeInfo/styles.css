@@ -1,42 +1,64 @@
-.initial {
-    text-align: center;
-}
-.initial img {
-    width: 500px;
-    height: 280px;
-    align-items: center;
-    text-align: center;
+.principal {
+    margin: 20px;
+    padding: 0;
+    justify-content: space-between;
+    background: #FFF;
+    
+    
 }
 
-.principal {
-    align-items: center;
-    border-radius: 15px;
+.principal .pokemon-name {
+    width: 100%;
+    background: #333333;
+    color: #FFF;
+    font-weight: bold;
+    padding: 0;
+    font-size: 20px;
     padding: 20px;
+    height: 70px;
+   
 }
 
 .principal .aside {
-    background: #ffF;
-    height: 350px;
-    font-size: 20px;
     display: flex;
-    padding: 20px;
-    margin: 10px 100px;
+    padding: 10px;
 }
 
-.principal .aside p span {
-    font-weight: bold;
-}
-
-.principal .image2 {
+.image2 {
     width: 300px;
+    height: 250px;
+    
+}
+
+.principal .aside .infos-from-pokemon {
+    border-left: 1px solid #DDD;
     height: 300px;
+ 
     text-align: center;
+    width: 100%;
+    padding: 10px;
+
+}
+
+.principal .aside .infos-from-pokemon table {
+    width: 100%;
+    font-size: 20px;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    text-align: center;
+    height: 80px;
 }
 
 
-.principal .aside .initial-span {
-    width: 100%;
+.principal .aside .infos-from-pokemon table tbody .initial-tr {
+    background: #DDD;
     color: #000;
-    text-align: center;
-    
+    font-weight: bold;
+    padding: 20px;
+    height: 60px;
+}
+
+.shiny-version {
+    width: 200px;
+    height: 200px;
 }

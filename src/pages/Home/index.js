@@ -8,6 +8,12 @@ import './styles.css';
 export default function Home() {
     
     return (
+        <>
+        <div className="Header-container">
+                <Link to="/" className="link-home">
+                    Home
+                </Link>
+        </div>
         <div>
             <img src={PokeLogo} alt="Logo Pokemon" />
             <hr />
@@ -15,5 +21,6 @@ export default function Home() {
                 Access to Pokedex
             </Link>
         </div>
+        </>
     )
 }

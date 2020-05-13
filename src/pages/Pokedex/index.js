@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaAngleRight } from 'react-icons/fa';
+import { Link, useHistory } from 'react-router-dom';
+import { FaAngleRight, FaSearch } from 'react-icons/fa';
 
 import api from '../../services/api';
 
@@ -12,11 +12,13 @@ export default function Pokedex() {
     const [pokemons, setPokemons] = useState([]);// eslint-disable-next-line
     const [pages, setPages] = useState(1);
     const [previousPage, setPreviousPage] = useState([]);
-    var [id, setID]= useState([]);
+    const [id, setID]= useState(1);
     const [name, setName] = useState([]);
     const [front_default, setFront] = useState([]);
     const [limit, setLimit] = useState(5); 
     let [response, setResponse] = useState([]);
+
+    const history = useHistory();
 
     useEffect(() => {
         renderPokemons();
@@ -57,16 +59,16 @@ export default function Pokedex() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    async function getId(limits = 5) {
-        for (var i = 0; i < limits; i++) {
-           const response = await api.get(`/pokemon/${i+1}`);
-        
-           console.log(response.data.id, response.data.name);
+    async function getId(name) {
+            try {
+                const response = await api.get(`/pokemon/${name}`);
 
-           setID(response.data.id);
+                history.push(`/pokedex/search/${response.data.id}`);
+            
+            } catch (err) {
+                alert('Pokemon not added yet!!!!')
+            }
 
-           setName(response.data.name);
-        }
     }
 
     return (
@@ -81,9 +83,20 @@ export default function Pokedex() {
             </Link>
         </div>
         
-        <div className="principal-container">
-            <h1 className="title-info">Pokedex<p>({count} Pokemons)</p></h1>  
-
+        <div className="principal-container"> 
+            
+            <div className="search-button-container">
+                <input 
+                    className="search-pokemon" 
+                    placeholder="Search a pokemon by name (or id) ex: bulbasaur or 1"
+                    onChange={e => setName(e.target.value)}
+                    value={name}
+                />
+                
+                <button type="submit" onClick={()=>getId(name)} className="search-button-frame">
+                    <FaSearch size={22} color="#FFF" />
+                </button>
+            </div>
             <table className="table-container" border="1">
                 <tbody>
                     <tr className="initial-tr">
@@ -96,7 +109,11 @@ export default function Pokedex() {
                         <tr key={index+1}>
                             <td className="id-td">{index+1}</td>
                             <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
-                            <td className="image-td"><img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`} alt="pokemon"/></td>
+                            <td className="image-td">
+                                <img 
+                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`} 
+                                alt="pokemon"/>
+                            </td>
                             <td className="actions-table">
                                 <button  className="btn-1">
                                 <Link to={`/pokedex/poke-info/${index+1}`} className="link">

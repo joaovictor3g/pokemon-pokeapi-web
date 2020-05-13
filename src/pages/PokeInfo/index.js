@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaAngleRight } from 'react-icons/fa';
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
-import pokeLogo from '../../assets/pokeLogo.png';
-
-import Home from '../../components/Header';
 
 import './styles.css';
 
@@ -51,22 +48,32 @@ export default function PokeInfo(props) {
                     PokeInfo
                 </Link>
         </div>
-            <div className="initial">
-                <img src={pokeLogo} alt="Logo do pokémon" className="image1"/>
-            </div>
-            <div className="principal">
-                <div className="aside">
-                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
-                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`} className="image2" />
-                    <hr />
-                    <div className="infos-from-pokemon">
-                        <p><span className="initial-span">Name:</span> {capitalizeFirstLetter(name)}</p>
-                        <p><span>Weight:</span> {weight}</p>
-                        <p><span>Pokedex number:</span> {numberOnPoke}</p>
-                        <p><span>Order: </span>{order}</p>
-                    </div>
+            
+        <div className="principal">
+            <header className="pokemon-name">{capitalizeFirstLetter(name)}</header>
+            <div className="aside">
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
+            
+                <div className="infos-from-pokemon">
+                    <table border="1">
+                        <tbody>
+                            <tr className="initial-tr">
+                                <td>Weight</td>
+                                <td>Pokedex number</td>
+                                <td>Order</td>
+                                <td>Shiny version</td>
+                            </tr>
+                            <tr>
+                                <td>{weight}</td>
+                                <td>{numberOnPoke}</td> 
+                                <td>{order}</td>
+                                <td><img className="shiny-version" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${id}.png`} /></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
         </>
     )
 }
