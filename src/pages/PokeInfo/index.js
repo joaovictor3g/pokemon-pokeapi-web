@@ -10,13 +10,17 @@ export default function PokeInfo(props) {
     const { id } = props.match.params;
     const [details, setDetails] = useState([]);
     const [name, setName] = useState('');
+    const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [numberOnPoke, setNumber] = useState(1);
     const [order, setOrder] = useState(1);
-    
+    const [shiny, setShiny] = useState('');
+    const [types, setTypes] = useState([]);   
+    const [evolve, setEvolve] = useState([]); 
 
     useEffect(() => {
         loadPokemonById();
+        //evolveTo();
     }, []);
 
     async function loadPokemonById() {
@@ -27,6 +31,24 @@ export default function PokeInfo(props) {
         setWeight(response.data.weight);
         setNumber(response.data.id);
         setOrder(response.data.order);
+        setHeight(response.data.height);
+        setShiny(response.data.sprites.front_shiny);
+        setTypes(response.data.types);
+        
+
+    }
+
+    async function evolveTo() {
+
+        try {
+            const response = await api.get(`/evolution-chain/${id}`);
+
+            console.log(response.data);
+        
+        } catch(err) {
+            alert('erro');
+        }
+
     }
 
     function capitalizeFirstLetter(string) {
@@ -50,27 +72,22 @@ export default function PokeInfo(props) {
         </div>
             
         <div className="principal">
-            <header className="pokemon-name">{capitalizeFirstLetter(name)}</header>
+            <header className="pokemon-name">{capitalizeFirstLetter(name)} N° {id}</header>
             <div className="aside">
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
-            
-                <div className="infos-from-pokemon">
-                    <table border="1">
-                        <tbody>
-                            <tr className="initial-tr">
-                                <td>Weight</td>
-                                <td>Pokedex number</td>
-                                <td>Order</td>
-                                <td>Shiny version</td>
-                            </tr>
-                            <tr>
-                                <td>{weight}</td>
-                                <td>{numberOnPoke}</td> 
-                                <td>{order}</td>
-                                <td><img className="shiny-version" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${id}.png`} /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="image-and-info">
+                    <header className="types-pokemons">{types.map((typer, index) => (
+                            <p key={index} className={typer.type.name}>{capitalizeFirstLetter(typer.type.name)}</p>    
+                    ))}</header>  
+
+                    <div className="infos-from-pokemon">     
+                        <span>Height: <p>{height/10} m</p></span>
+                       
+                        <span>Weight: <p>{weight/10} kg</p></span>
+                       
+                        <span>Order: <p>{order}</p></span>
+
+                    </div>
                 </div>
             </div>
         </div>

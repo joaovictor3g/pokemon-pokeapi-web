@@ -12,3 +12,7 @@ body {
     background: #ddd;
     -webkit-font-smoothing: antialiased;
 }
+
+button {
+    cursor: pointer;
+}

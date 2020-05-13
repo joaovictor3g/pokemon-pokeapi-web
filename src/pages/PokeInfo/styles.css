@@ -22,43 +22,153 @@
 .principal .aside {
     display: flex;
     padding: 10px;
+    justify-content: space-between;
+    position: relative;    
 }
 
-.image2 {
-    width: 300px;
-    height: 250px;
-    
-}
-
-.principal .aside .infos-from-pokemon {
-    border-left: 1px solid #DDD;
-    height: 300px;
- 
-    text-align: center;
+.principal .aside .image-and-info {
+    justify-content: space-between;
+    display: block;
+    align-items: center;
     width: 100%;
     padding: 10px;
 
 }
 
-.principal .aside .infos-from-pokemon table {
-    width: 100%;
-    font-size: 20px;
-    border-collapse: collapse;
-    border: 1px solid #000;
-    text-align: center;
-    height: 80px;
-}
-
-
-.principal .aside .infos-from-pokemon table tbody .initial-tr {
+.image2 {
+    width: 500px;
+    height: 400px;
     background: #DDD;
-    color: #000;
-    font-weight: bold;
-    padding: 20px;
-    height: 60px;
+    border-radius: 5px;
+    
 }
 
-.shiny-version {
-    width: 200px;
-    height: 200px;
+.principal .aside .infos-from-pokemon {
+    width: 100%;
+    height: 345px;
+    background: #00bfff;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    
+    
+}
+
+.principal .aside .infos-from-pokemon  span {
+    color: #FFF;
+    font-size: 20px;
+    
+    
+}
+
+.principal .aside .infos-from-pokemon  span p {
+    color: #000;
+
+}
+
+header.types-pokemons {
+    display: flex;    
+    
+}
+
+header.types-pokemons p {
+    width: 120px;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px;
+    color: #FFF;
+    margin-bottom: 10px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+p.fire {
+    background: orange;
+    
+}
+
+p.poison {
+    background: #730099;
+    
+}
+
+p.grass {
+    background: #00e600;
+    
+}
+
+p.psychic {
+    background: #d24dff;
+    
+}
+
+p.ice {
+    background: #80e5ff;
+    
+}
+
+p.flying {
+    background: #1affff;
+    
+}
+
+p.normal {
+    background:#a3a375;
+    
+}
+
+p.water {
+    background:#0099ff;
+    
+}
+
+
+p.dark {
+    background:#003366;
+    
+}
+
+p.rock {
+    background: #b37700;
+    
+}
+
+p.bug {
+    background: #333300;
+    
+}
+
+p.electric {
+    background: #ffff33;
+    
+}
+
+p.fairy {
+    background: #ff4d88;
+}
+
+p.fighting {
+    background: #ff3300;
+    
+}
+
+p.dragon {
+    background: #008fb3;
+    
+}
+
+p.ghost {
+    background: #000080;
+    
+}
+
+p.ground {
+    background: #4d2600;
+    
+}
+
+p.steel {
+    background: #33ff99;
+    
 }
