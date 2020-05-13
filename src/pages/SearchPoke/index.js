@@ -40,6 +40,7 @@ export default function SearchPoke(props) {
             </div>
             
             <div className="principal-container"> 
+            
             <table className="table-container" border="1">
                 <tbody>
                     <tr className="initial-tr">

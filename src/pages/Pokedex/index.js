@@ -8,21 +8,21 @@ import api from '../../services/api';
 import './styles.css';
 
 export default function Pokedex() {
-    const [count, setCount] = useState('');
+   
     const [pokemons, setPokemons] = useState([]);// eslint-disable-next-line
     const [pages, setPages] = useState(1);
     const [previousPage, setPreviousPage] = useState([]);
-    const [id, setID]= useState(1);
+    
     const [name, setName] = useState([]);
-    const [front_default, setFront] = useState([]);
+   
     const [limit, setLimit] = useState(5); 
-    let [response, setResponse] = useState([]);
+  
 
     const history = useHistory();
 
     useEffect(() => {
         renderPokemons();
-        //getId();
+      
     }, []);
 
     async function renderPokemons(offset = 0, limits = 5) {
@@ -30,14 +30,7 @@ export default function Pokedex() {
 
         setPokemons(response.data.results);
 
-        setCount(response.data.count);
-
         setPreviousPage(response.data.previous);
-
-        //console.log(offset);
-        //console.log(limits);
-
-        //setPokemons(pokemons.filter(pokemon => pokemon.name !== name));
 
     }
     
@@ -104,6 +97,7 @@ export default function Pokedex() {
                         <td>Nome</td>
                         <td></td>
                         <td></td>
+                        
                     </tr> 
                     {pokemons.map((pokemon, index) => (
                         <tr key={index+1}>
