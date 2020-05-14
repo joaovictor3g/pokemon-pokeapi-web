@@ -9,7 +9,7 @@ This is an app just made for practice, using the [PokeApi v2](https://github.com
 - Axios
 
 ### 🔨 How to run
-Clone this repository && cd;
+- Clone this repository && cd;
 - `yarn` to install dependencies.
 - `yarn start` to run app.
 
