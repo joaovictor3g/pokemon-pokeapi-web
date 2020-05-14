@@ -7,6 +7,7 @@ import './styles.scss';
 export default function Modal({ id="modal", onClose = () => {}, children  }) {
     const [description, setDescription] = useState('');
     const [name, setName] = useState([]);
+    const [effect, setEffect] = useState([]);
 
     useEffect(() => {
         getIdofAbility();
@@ -17,7 +18,10 @@ export default function Modal({ id="modal", onClose = () => {}, children  }) {
             const response = await axios.get(children);
 
             setName(response.data.name);
-            setDescription(response.data.effect_entries[0].effect);
+            
+            setDescription(response.data.effect_entries[0].short_effect);
+
+            console.log(response.data);
             
        } catch(err) {
 
@@ -31,9 +35,7 @@ export default function Modal({ id="modal", onClose = () => {}, children  }) {
     return (
         <div id={id} className="modal" onClick={handleOutsideClick}>
             <div className="container">
-               
-                    
-                    <button type="buttom" className="close" onClick={onClose}/>
+                <button type="button" className="close" onClick={onClose}/>
                 
                 <div className="content">{description}</div>
             </div>

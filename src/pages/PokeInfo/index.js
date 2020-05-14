@@ -16,7 +16,7 @@ export default function PokeInfo(props) {
     const [weight, setWeight] = useState('');
     const [numberOnPoke, setNumber] = useState(1);
     const [order, setOrder] = useState(1);
-    const [shiny, setShiny] = useState('');
+    const [back, setBack] = useState('');
     const [types, setTypes] = useState([]);   
     const [abilities, setAbilities] = useState([]); 
 
@@ -36,7 +36,7 @@ export default function PokeInfo(props) {
         setNumber(response.data.id);
         setOrder(response.data.order);
         setHeight(response.data.height);
-        setShiny(response.data.sprites.front_shiny);
+        setBack(response.data.sprites.back_default);
         setTypes(response.data.types);
         setAbilities(response.data.abilities);
 
@@ -79,6 +79,9 @@ export default function PokeInfo(props) {
             <header className="pokemon-name">{capitalizeFirstLetter(name)} N° {id}</header>
             <div className="aside">
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
+                <img src={back} className="image2"/>
+
+                
                 <div className="image-and-info">
                     <header className="types-pokemons">
                         {types.map((typer, index) => (
@@ -94,18 +97,19 @@ export default function PokeInfo(props) {
                             Order: <p>{order}</p>
                         </span>
 
-                        <span>Abilities: {abilities.map((ability, index) => (
+                        <span className="abilities"><p>Abilities:</p> {abilities.map((ability, index) => (
                             
-                            <span key={index+1}>
+                            <span key={index}>
 
                                 {capitalizeFirstLetter(ability.ability.name)}
 
-                                <button onClick={()=>setIsModalVisible(true)}>
+                                <button id={index} onClick={()=>setIsModalVisible(true)}>
                                     <FaQuestion size={15} color="#00bfff" />
                                 </button>    
                                 {isModalVisible ? 
                                     <Modal onClose={()=>setIsModalVisible(false)}>
                                         {ability.ability.url}
+                                        
                                     </Modal> : 
                                 null}
                                 </span>

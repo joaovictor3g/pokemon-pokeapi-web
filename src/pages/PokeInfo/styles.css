@@ -3,6 +3,8 @@
     padding: 0;
     justify-content: space-between;
     background: #FFF;
+    align-items: center;
+    text-align: center;
       
 }
 
@@ -20,8 +22,9 @@
 
 .principal .aside {
     display: flex;
-    padding: 10px;
-    
+    padding: 20px;
+    align-items: center;
+    text-align: right;
 }
 
 .principal .aside .image-and-info {
@@ -31,10 +34,11 @@
 }
 
 .image2 {
-    width: 500px;
+    width: 600px;
     height: 400px;
     background: #DDD;
     border-radius: 5px;
+    margin: 10px;
     
 }
 
@@ -43,7 +47,6 @@
     height: 345px;
     background: #00bfff;
     border-radius: 5px;
-    text-align: center;
     padding: 10px;
     margin: 10px;
     justify-content: space-between;
@@ -55,7 +58,7 @@
     color: #FFF;
     font-size: 20px;
     font-weight: bold;
-
+    
 }
 
 .principal .aside .infos-from-pokemon  span p, .principal .aside .infos-from-pokemon  span span {
@@ -90,6 +93,16 @@ header.types-pokemons p {
     color: #FFF;
     margin-bottom: 10px;
     margin: 10px;
+}
+
+.abilities {
+    text-align: right;
+    
+}
+
+.abilities p {
+    color: #FFF;
+    margin-right: 20px;
 }
 
 p.fire {

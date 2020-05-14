@@ -59,10 +59,10 @@ export default function SearchPoke(props) {
                         <td className="actions-table">
                             <button  className="btn-1">
                             <Link to={`/pokedex/poke-info/${id}`} className="link">
-                                Informações
+                                Informations
                             </Link>
                             </button>
-                            <button>Capturar</button>
+                            <button>Catch</button>
                         </td>
                     </tr>
                     

@@ -1,14 +1,23 @@
+.modal:before {
+    content: '';
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(#000, .5);
+    z-index: 2;
+   
+}
+
 .modal {
     width: 100%;
     position: absolute;
-    top: 0;
+    top: 200px;
     left: 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: normal;
     margin: 30px;
+    
 
     .container {
         background-color: #FFF;
@@ -18,7 +27,7 @@
         border-radius: 5px;
         text-align: right;
         border: 1px solid #000;
-        
+        z-index: 3;
         .pokemon-name-container {
             font-weight: normal;
         }
