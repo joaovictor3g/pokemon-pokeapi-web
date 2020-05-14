@@ -1,4 +1,4 @@
-# PokeDex 
+<center><img src="src/assets/pokeLogo.png" alt="image" width="400"></center> 
 
 ### 💡 Project
 
