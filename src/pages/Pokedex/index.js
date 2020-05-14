@@ -25,7 +25,7 @@ export default function Pokedex() {
       
     }, []);
 
-    async function renderPokemons(offset = 0, limits = 5) {
+    async function renderPokemons(offset = 0, limits = 100) {
         const response = await api.get(`/pokemon/?offset=${offset}&limit=${limits}`);
 
         setPokemons(response.data.results);
@@ -111,11 +111,11 @@ export default function Pokedex() {
                             </td>
                             <td className="actions-table">
                                 <button  className="btn-1">
-                                <Link to={`/pokedex/poke-info/${index+1}`} className="link">
-                                    Informações
-                                </Link>
+                                    <Link to={`/pokedex/poke-info/${index+1}`} className="link">
+                                        Informations
+                                    </Link>
                                 </button>
-                                <button>Capturar</button>
+                                <button>Catch</button>
                             </td>
                         </tr>
                     ))}

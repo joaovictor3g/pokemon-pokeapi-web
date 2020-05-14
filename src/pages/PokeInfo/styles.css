@@ -3,8 +3,7 @@
     padding: 0;
     justify-content: space-between;
     background: #FFF;
-    
-    
+      
 }
 
 .principal .pokemon-name {
@@ -22,14 +21,10 @@
 .principal .aside {
     display: flex;
     padding: 10px;
-    justify-content: space-between;
-    position: relative;    
+    
 }
 
 .principal .aside .image-and-info {
-    justify-content: space-between;
-    display: block;
-    align-items: center;
     width: 100%;
     padding: 10px;
 
@@ -51,20 +46,35 @@
     text-align: center;
     padding: 10px;
     margin: 10px;
-    
+    justify-content: space-between;
+    display: flex;
     
 }
 
 .principal .aside .infos-from-pokemon  span {
     color: #FFF;
     font-size: 20px;
-    
+    font-weight: bold;
+
+}
+
+.principal .aside .infos-from-pokemon  span p, .principal .aside .infos-from-pokemon  span span {
+    color: #000;
     
 }
 
-.principal .aside .infos-from-pokemon  span p {
-    color: #000;
+.principal .aside .infos-from-pokemon  span span {
+    display: block;
+}
 
+.principal .aside .infos-from-pokemon  span span button {
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+    border: 0;
+    border-radius: 50%;
+    padding: 3px;
+    
 }
 
 header.types-pokemons {
@@ -79,7 +89,6 @@ header.types-pokemons p {
     padding: 5px;
     color: #FFF;
     margin-bottom: 10px;
-    font-weight: bold;
     margin: 10px;
 }
 

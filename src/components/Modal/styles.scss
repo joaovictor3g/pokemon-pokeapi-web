@@ -1,0 +1,63 @@
+.modal {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+    margin: 30px;
+
+    .container {
+        background-color: #FFF;
+        color: #000;
+        width: 60%;
+        height: 60%;
+        border-radius: 5px;
+        text-align: right;
+        border: 1px solid #000;
+        
+        .pokemon-name-container {
+            font-weight: normal;
+        }
+        
+        
+        button {
+            background: transparent;
+            outline: 0;
+            border: 0;
+            color: #000;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            width: 32px;
+            height: 32px;
+            right: calc(-100%+64);          
+            &:before, &:after {
+                content: ' ';
+                position: absolute;
+                width: 2.5px;
+                height: 24px;
+                background: #000;
+            }
+            
+            &:before {
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                transform: rotate(-45deg);
+            }
+        }
+
+        .content {
+            padding: 10px;
+            text-align: justify;
+            
+        }
+    }
+    
+}
+

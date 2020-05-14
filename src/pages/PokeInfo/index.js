@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+import { FaAngleRight, FaQuestion } from 'react-icons/fa';
 
 import api from '../../services/api';
+
+import Modal from '../../components/Modal';
 
 import './styles.css';
 
@@ -16,7 +18,9 @@ export default function PokeInfo(props) {
     const [order, setOrder] = useState(1);
     const [shiny, setShiny] = useState('');
     const [types, setTypes] = useState([]);   
-    const [evolve, setEvolve] = useState([]); 
+    const [abilities, setAbilities] = useState([]); 
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         loadPokemonById();
@@ -34,7 +38,7 @@ export default function PokeInfo(props) {
         setHeight(response.data.height);
         setShiny(response.data.sprites.front_shiny);
         setTypes(response.data.types);
-        
+        setAbilities(response.data.abilities);
 
     }
 
@@ -54,7 +58,7 @@ export default function PokeInfo(props) {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
- 
+
     return (
         <>  
             <div className="Header-container">
@@ -76,17 +80,36 @@ export default function PokeInfo(props) {
             <div className="aside">
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
                 <div className="image-and-info">
-                    <header className="types-pokemons">{types.map((typer, index) => (
-                            <p key={index} className={typer.type.name}>{capitalizeFirstLetter(typer.type.name)}</p>    
-                    ))}</header>  
+                    <header className="types-pokemons">
+                        {types.map((typer, index) => (
+                            <p key={index} className={typer.type.name}>
+                                {capitalizeFirstLetter(typer.type.name)}
+                            </p>    
+                        ))}
+                    </header>  
 
                     <div className="infos-from-pokemon">     
-                        <span>Height: <p>{height/10} m</p></span>
-                       
-                        <span>Weight: <p>{weight/10} kg</p></span>
-                       
-                        <span>Order: <p>{order}</p></span>
+                        <span className="height-weight-order">Height: <p>{height/10} m</p>
+                            Weight: <p>{weight/10} kg</p>
+                            Order: <p>{order}</p>
+                        </span>
 
+                        <span>Abilities: {abilities.map((ability, index) => (
+                            
+                            <span key={index+1}>
+
+                                {capitalizeFirstLetter(ability.ability.name)}
+
+                                <button onClick={()=>setIsModalVisible(true)}>
+                                    <FaQuestion size={15} color="#00bfff" />
+                                </button>    
+                                {isModalVisible ? 
+                                    <Modal onClose={()=>setIsModalVisible(false)}>
+                                        {ability.ability.url}
+                                    </Modal> : 
+                                null}
+                                </span>
+                        ))}</span>
                     </div>
                 </div>
             </div>
