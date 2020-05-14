@@ -34,7 +34,7 @@
 }
 
 .image2 {
-    width: 600px;
+    width: 800px;
     height: 400px;
     background: #DDD;
     border-radius: 5px;
@@ -93,6 +93,8 @@ header.types-pokemons p {
     color: #FFF;
     margin-bottom: 10px;
     margin: 10px;
+    font-weight: bold;
+    font-family: 'Concert One', cursive;
 }
 
 .abilities {
@@ -106,7 +108,7 @@ header.types-pokemons p {
 }
 
 p.fire {
-    background: orange;
+    background: #ff8000;
     
 }
 

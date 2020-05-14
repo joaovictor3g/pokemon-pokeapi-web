@@ -6,8 +6,6 @@ import './styles.scss';
 
 export default function Modal({ id="modal", onClose = () => {}, children  }) {
     const [description, setDescription] = useState('');
-    const [name, setName] = useState([]);
-    const [effect, setEffect] = useState([]);
 
     useEffect(() => {
         getIdofAbility();
@@ -16,12 +14,8 @@ export default function Modal({ id="modal", onClose = () => {}, children  }) {
     async function getIdofAbility() {
        try {
             const response = await axios.get(children);
-
-            setName(response.data.name);
             
             setDescription(response.data.effect_entries[0].short_effect);
-
-            console.log(response.data);
             
        } catch(err) {
 

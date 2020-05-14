@@ -10,11 +10,11 @@ import './styles.css';
 
 export default function PokeInfo(props) {
     const { id } = props.match.params;
-    const [details, setDetails] = useState([]);
+
+    const [front, setFront] = useState('');
     const [name, setName] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
-    const [numberOnPoke, setNumber] = useState(1);
     const [order, setOrder] = useState(1);
     const [back, setBack] = useState('');
     const [types, setTypes] = useState([]);   
@@ -23,35 +23,22 @@ export default function PokeInfo(props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
-        loadPokemonById();
-        //evolveTo();
+        loadPokemonById();//eslint-disable-next-line
     }, []);
 
     async function loadPokemonById() {
         const response = await api.get(`/pokemon/${id}`);
 
-        setDetails(response.data);
+        
         setName(response.data.name);
         setWeight(response.data.weight);
-        setNumber(response.data.id);
         setOrder(response.data.order);
         setHeight(response.data.height);
         setBack(response.data.sprites.back_default);
         setTypes(response.data.types);
         setAbilities(response.data.abilities);
+        setFront(response.data.sprites.front_default);
 
-    }
-
-    async function evolveTo() {
-
-        try {
-            const response = await api.get(`/evolution-chain/${id}`);
-
-            console.log(response.data);
-        
-        } catch(err) {
-            alert('erro');
-        }
 
     }
 
@@ -78,8 +65,8 @@ export default function PokeInfo(props) {
         <div className="principal">
             <header className="pokemon-name">{capitalizeFirstLetter(name)} N° {id}</header>
             <div className="aside">
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} className="image2"/>
-                <img src={back} className="image2"/>
+                <img src={front} alt="front" className="image2"/>
+                <img src={back} alt="back" className="image2"/>
 
                 
                 <div className="image-and-info">
@@ -97,21 +84,25 @@ export default function PokeInfo(props) {
                             Order: <p>{order}</p>
                         </span>
 
-                        <span className="abilities"><p>Abilities:</p> {abilities.map((ability, index) => (
+                        <span className="abilities"><p>Abilities:</p> 
+                            {abilities.map((ability, index) => (
                             
-                            <span key={index}>
+                                <span key={index}>
 
-                                {capitalizeFirstLetter(ability.ability.name)}
+                                    {capitalizeFirstLetter(ability.ability.name)}
 
-                                <button id={index} onClick={()=>setIsModalVisible(true)}>
-                                    <FaQuestion size={15} color="#00bfff" />
-                                </button>    
-                                {isModalVisible ? 
-                                    <Modal onClose={()=>setIsModalVisible(false)}>
-                                        {ability.ability.url}
-                                        
-                                    </Modal> : 
-                                null}
+                                    <button 
+                                        onClick={()=>setIsModalVisible(true)}
+                                    >
+                                        <FaQuestion size={15} color="#00bfff" />
+                                    </button>    
+
+                                    {isModalVisible ? 
+                                        <Modal onClose={()=>setIsModalVisible(false)}>
+                                            {ability.ability.url}
+
+                                        </Modal> : 
+                                    null}
                                 </span>
                         ))}</span>
                     </div>

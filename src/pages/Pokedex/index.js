@@ -10,8 +10,10 @@ import './styles.css';
 export default function Pokedex() {
    
     const [pokemons, setPokemons] = useState([]);// eslint-disable-next-line
-    const [pages, setPages] = useState(1);
-    const [previousPage, setPreviousPage] = useState([]);
+    const [pages, setPages] = useState(0);
+    const [count, setCount] = useState(0);
+
+    let obj = [];
     
     const [name, setName] = useState([]);
    
@@ -25,26 +27,46 @@ export default function Pokedex() {
       
     }, []);
 
-    async function renderPokemons(offset = 0, limits = 100) {
-        const response = await api.get(`/pokemon/?offset=${offset}&limit=${limits}`);
+    async function renderPokemons(offset) {
+        const response = await api.get(`/pokemon/?offset=${offset}&limit=5`);
 
-        setPokemons(response.data.results);
+        setPokemons(response.data.results); 
 
-        setPreviousPage(response.data.previous);
+        setCount(response.data.count);
 
+        /*response.data.results.map((pokemon, index) => (
+            obj.push({
+                id: index+1+offset,
+                name: pokemon.name,
+                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1+offset}.png`
+            })
+        ));*/
+
+        //sessionStorage.setItem('all', JSON.stringify(obj));
+    
     }
     
-    function nextPage() {
-        setPages(pages+1);
-        setLimit(limit+1);
-        renderPokemons(pages, limit);
+    function nextPage(e) {
+        e.preventDefault();
+
+        if(pages===count) 
+            return;
+
+        setPages(pages+5);
+
+        console.log(pages);
+
+        renderPokemons(pages+5);
     }
 
-    function goToPreviousPage() {
-        if(previousPage === null)
+    function goToPreviousPage(e) {
+        e.preventDefault();
+
+        if(pages <= 0)
             return;
-        setPreviousPage(pages-1);
-        renderPokemons(previousPage);
+        //setLimit(limit-1);
+        setPages(pages-5);
+        renderPokemons(pages);
     }
 
 
@@ -53,16 +75,37 @@ export default function Pokedex() {
     }
 
     async function getId(name) {
-            try {
-                name = name.toLowerCase();
-                const response = await api.get(`/pokemon/${name}`);
-
-                history.push(`/pokedex/search/${response.data.id}`);
-            
-            } catch (err) {
-                alert(`Pokemon not added yet!!!!${name}`)
+        try {
+            name = name.toLowerCase();
+            const response = await api.get(`/pokemon/${name}`);
+            history.push(`/pokedex/search/${response.data.id}`);
+        
+        } catch (err) {
+            alert(`Pokemon not added yet!!!!${name}`)
             }
 
+    }
+
+    //Mandando os pokemons que quero capturar pro sessionstorage
+    function catchPokemon(name, id) {
+        let pokeball = JSON.parse(sessionStorage.getItem('pokeball'));
+
+        if(!pokeball)
+            pokeball = [];
+        
+        if(pokeball.length===6) {
+            alert('Full');
+            history.push('/pokedex/your-pokemons');
+            return;
+        }
+
+        pokeball.push({
+            id,
+            name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+        });
+        sessionStorage.setItem('pokeball', JSON.stringify(pokeball));
+        alert('Pokemon was caught');
     }
 
     return (
@@ -102,27 +145,29 @@ export default function Pokedex() {
                     </tr> 
                     {pokemons.map((pokemon, index) => (
                         <tr key={index+1}>
-                            <td className="id-td">{index+1}</td>
+                            <td className="id-td">{index+1+pages}</td>
                             <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
                             <td className="image-td">
                                 <img 
-                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`} 
+                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1+pages}.png`} 
                                 alt="pokemon"/>
                             </td>
+                            
                             <td className="actions-table">
                                 <button  className="btn-1">
-                                    <Link to={`/pokedex/poke-info/${index+1}`} className="link">
+                                    <Link to={`/pokedex/poke-info/${index+1+pages}`} className="link">
                                         Informations
                                     </Link>
                                 </button>
-                                <button>Catch</button>
+                                <button onClick={()=>catchPokemon(pokemon.name, index+1)}>Catch
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>   
             <div className="actions"> 
-                <button disabled={goToPreviousPage === null} onClick={goToPreviousPage} className="prev">Anterior</button>
+                <button onClick={goToPreviousPage} className="prev">Anterior</button>
                 <button className="next" onClick={nextPage}>Próximo</button> 
             </div>
         </div>
