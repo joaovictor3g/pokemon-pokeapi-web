@@ -2,7 +2,7 @@
 
 ### 💡 Project
 
-This is an app just made for practice, using the [PokeApi v2](https://github.com/PokeAPI/pokeapi)
+This is an app just made for practice, using the [PokeApi v2](https://github.com/PokeAPI/pokeapi/tree/master/pokemon_v2)
 
 ### 📱 Techs
 - ReactJS
