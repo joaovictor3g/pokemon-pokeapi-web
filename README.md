@@ -1,6 +1,6 @@
-<center>
+<p align="center">
     <img src="src/assets/pokeLogo.png" alt="image" width="400" style="text-align: center">
-</center> 
+</p> 
 
 ### 💡 Project
 
