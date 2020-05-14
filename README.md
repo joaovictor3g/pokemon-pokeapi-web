@@ -9,6 +9,7 @@ This is an app just made for practice, using the [PokeApi v2](https://github.com
 ### 📱 Techs
 - ReactJS
 - Axios
+- node-sass
 
 ### 🔨 How to run
 - Clone this repository && cd;
