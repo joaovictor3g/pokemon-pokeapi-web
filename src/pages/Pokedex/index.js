@@ -27,22 +27,13 @@ export default function Pokedex() {
       
     }, []);
 
-    async function renderPokemons(offset) {
+    async function renderPokemons(offset = 0) {
         const response = await api.get(`/pokemon/?offset=${offset}&limit=5`);
 
         setPokemons(response.data.results); 
 
         setCount(response.data.count);
 
-        /*response.data.results.map((pokemon, index) => (
-            obj.push({
-                id: index+1+offset,
-                name: pokemon.name,
-                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1+offset}.png`
-            })
-        ));*/
-
-        //sessionStorage.setItem('all', JSON.stringify(obj));
     
     }
     
@@ -66,7 +57,8 @@ export default function Pokedex() {
             return;
         //setLimit(limit-1);
         setPages(pages-5);
-        renderPokemons(pages);
+        
+        renderPokemons(pages-5);
     }
 
 

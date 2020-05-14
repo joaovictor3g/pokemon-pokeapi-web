@@ -53,7 +53,7 @@ export default function PokeInfo(props) {
                     Home
                 </Link>
                 <FaAngleRight size={20} color="#FFF" />
-                <Link to="/pokedex" className="pokedex-button">
+                <Link to={`/pokedex/`} className="pokedex-button">
                     Pokedex
                 </Link>
                 <FaAngleRight size={20} color="#FFF" />
