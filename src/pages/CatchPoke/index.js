@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaAngleRight } from 'react-icons/fa';
 
-import api from '../../services/api';
-
 export default function CatchPoke() {
     const [myPokemons, setMyPokemons] = useState([]);
 
@@ -15,7 +13,7 @@ export default function CatchPoke() {
         const response = JSON.parse(sessionStorage.getItem('pokeball'));
 
         setMyPokemons(response);
-        console.log(response);
+    
         
     }
 

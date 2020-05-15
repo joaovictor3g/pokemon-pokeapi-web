@@ -45,8 +45,6 @@ export default function Pokedex() {
 
         setPages(pages+5);
 
-        console.log(pages);
-
         renderPokemons(pages+5);
     }
 
@@ -151,7 +149,7 @@ export default function Pokedex() {
                                         Informations
                                     </Link>
                                 </button>
-                                <button onClick={()=>catchPokemon(pokemon.name, index+1)}>Catch
+                                <button onClick={()=>catchPokemon(pokemon.name, index+1+pages)}>Catch
                                 </button>
                             </td>
                         </tr>

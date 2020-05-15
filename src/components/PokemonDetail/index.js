@@ -6,7 +6,8 @@ import './styles.scss';
 import { MdCancel } from 'react-icons/md';
 
 export default function PokemonDetail({ id, div_id = "modal", children, onClose = () => {} }) {
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState([]);
+    const [uniqueDescription, setUniqueDescription] = useState([]);
 
     useEffect(() => {
         getDetail();
@@ -14,9 +15,19 @@ export default function PokemonDetail({ id, div_id = "modal", children, onClose 
 
     async function getDetail() {
         const response = await api.get(`/pokemon-species/${id}`);
+        let obj = [];
 
-        setDescription(response.data.flavor_text_entries[1].flavor_text);
-        console.log(response.data);
+        response.data.flavor_text_entries.map((desc) => (
+            obj.push(desc.version.name)
+        ))
+        
+        for(var i = 0; i < obj.length; i++){
+            if(response.data.flavor_text_entries[i].language.name==="en" && response.data.flavor_text_entries[i].version.name===obj[i]) {
+                setUniqueDescription(response.data.flavor_text_entries[i].flavor_text);
+                break;
+            }
+        }
+
     }
     
     function handleOutsideClick(e) {
@@ -30,7 +41,7 @@ export default function PokemonDetail({ id, div_id = "modal", children, onClose 
                     <MdCancel size={30} color="#FFF" />
                 </button>
                 
-                <div className="content">{description}</div>
+                <div className="content">{uniqueDescription}</div>
             </div>
         </div>
     )
