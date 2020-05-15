@@ -5,6 +5,7 @@ import { FaAngleRight, FaQuestion } from 'react-icons/fa';
 import api from '../../services/api';
 
 import Modal from '../../components/Modal';
+import PokemonDetail from '../../components/PokemonDetail';
 
 import './styles.css';
 
@@ -21,6 +22,7 @@ export default function PokeInfo(props) {
     const [abilities, setAbilities] = useState([]); 
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [detailIsVisible, setDetailIsVisible] = useState(false);
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
@@ -63,7 +65,22 @@ export default function PokeInfo(props) {
         </div>
             
         <div className="principal">
-            <header className="pokemon-name">{capitalizeFirstLetter(name)} N° {id}</header>
+            <header className="pokemon-name">
+                {capitalizeFirstLetter(name)} N° {id}
+                <button className="info-question"
+                    onClick={()=>setDetailIsVisible(true)}
+                >
+                    <FaQuestion size={20}  />
+                    
+                </button>
+                {detailIsVisible ?
+                 <PokemonDetail 
+                    id={id} 
+                    onClose={()=>setDetailIsVisible(false)} 
+                />: 
+                 null}
+
+            </header>
             <div className="aside">
                 <img src={front} alt="front" className="image2"/>
                 <img src={back} alt="back" className="image2"/>
@@ -86,11 +103,8 @@ export default function PokeInfo(props) {
 
                         <span className="abilities"><p>Abilities:</p> 
                             {abilities.map((ability, index) => (
-                            
                                 <span key={index}>
-
                                     {capitalizeFirstLetter(ability.ability.name)}
-
                                     <button 
                                         onClick={()=>setIsModalVisible(true)}
                                     >

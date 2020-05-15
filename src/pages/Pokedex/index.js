@@ -159,8 +159,8 @@ export default function Pokedex() {
                 </tbody>
             </table>   
             <div className="actions"> 
-                <button onClick={goToPreviousPage} className="prev">Anterior</button>
-                <button className="next" onClick={nextPage}>Próximo</button> 
+                <button onClick={goToPreviousPage} className="prev">Previous</button>
+                <button className="next" onClick={nextPage}>Next</button> 
             </div>
         </div>
         </>

@@ -17,7 +17,20 @@
     font-size: 20px;
     padding: 20px;
     height: 70px;
+    justify-content: space-between;
+    display: flex;
    
+}
+
+.principal .pokemon-name .info-question {
+    background: #FFF;
+    border: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #333333;
+    margin-top: 1px;
+
 }
 
 .principal .aside {
