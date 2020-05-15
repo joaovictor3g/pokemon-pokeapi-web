@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaAngleRight, FaSearch } from 'react-icons/fa';
+import { FaAngleRight, FaSearch, FaInfoCircle } from 'react-icons/fa';
 
 import api from '../../services/api';
 
 //import Header from '../../components/Header';
 import './styles.css';
 
+import PokeballImg from '../../assets/pokeball.svg';
+
 export default function Pokedex() {
    
     const [pokemons, setPokemons] = useState([]);// eslint-disable-next-line
     const [pages, setPages] = useState(0);
     const [count, setCount] = useState(0);
-
-    let obj = [];
-    
-    const [name, setName] = useState([]);
-   
-    const [limit, setLimit] = useState(5); 
+    const [name, setName] = useState([]);   
+    const [limit, setLimit] = useState(5);
+    const [pokeball_image, setPokeball_image] = useState(PokeballImg); 
   
-
     const history = useHistory();
 
     useEffect(() => {
@@ -33,8 +31,7 @@ export default function Pokedex() {
         setPokemons(response.data.results); 
 
         setCount(response.data.count);
-
-    
+        
     }
     
     function nextPage(e) {
@@ -77,6 +74,7 @@ export default function Pokedex() {
     }
 
     //Mandando os pokemons que quero capturar pro sessionstorage
+    let indice = 6;
     function catchPokemon(name, id) {
         let pokeball = JSON.parse(sessionStorage.getItem('pokeball'));
 
@@ -89,13 +87,29 @@ export default function Pokedex() {
             return;
         }
 
+        function getRandom() {
+            return (Math.floor(Math.random() * 2));
+        }
+        
+        if(getRandom() === 0){ 
+            alert(`${capitalizeFirstLetter(name)} WAS CAUGHT!!!`)
+        } else {
+            alert(`${capitalizeFirstLetter(name)} WAS NOT CAUGHT!!!`)
+            return;
+        }
+        
+        
         pokeball.push({
             id,
             name,
             image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
         });
+
+     
+
         sessionStorage.setItem('pokeball', JSON.stringify(pokeball));
-        alert('Pokemon was caught');
+        
+        renderPokemons(pages);
     }
 
     return (
@@ -123,6 +137,17 @@ export default function Pokedex() {
                 <button type="submit" onClick={()=>getId(name)} className="search-button-frame">
                     <FaSearch size={22} color="#FFF" />
                 </button>
+                {!JSON.parse(sessionStorage.getItem('pokeball')) ?
+                    null: 
+                   
+                    JSON.parse(
+                        sessionStorage.getItem('pokeball')).map((poke, index) => (
+                            <img key={index+1} src={PokeballImg} alt="pokemon" className="pokeball-image"/>
+                            
+                        )
+                    )   
+                }
+                
             </div>
             <table className="table-container" border="1">
                 <tbody>
@@ -149,7 +174,8 @@ export default function Pokedex() {
                                         Informations
                                     </Link>
                                 </button>
-                                <button onClick={()=>catchPokemon(pokemon.name, index+1+pages)}>Catch
+                                <button onClick={()=>catchPokemon(pokemon.name, index+1+pages)}>
+                                    Catch
                                 </button>
                             </td>
                         </tr>

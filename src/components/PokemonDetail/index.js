@@ -5,7 +5,7 @@ import api from '../../services/api';
 import './styles.scss';
 import { MdCancel } from 'react-icons/md';
 
-export default function PokemonDetail({ id, div_id = "modal", children, onClose = () => {} }) {
+export default function PokemonDetail({ id, div_id = "modal", onClose = () => {} }) {
     const [description, setDescription] = useState([]);
     const [uniqueDescription, setUniqueDescription] = useState([]);
 

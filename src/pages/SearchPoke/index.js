@@ -12,7 +12,7 @@ export default function SearchPoke(props) {
 
     
     useEffect(() => {
-        searchByName();
+        searchByName();//eslint-disable-next-line
     }, []);
 
     async function searchByName() {

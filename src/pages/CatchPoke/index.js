@@ -17,7 +17,6 @@ export default function CatchPoke() {
         
     }
 
-
     return (
         <>
         <div className="Header-container">
@@ -44,8 +43,8 @@ export default function CatchPoke() {
                         <td></td>
                         
                     </tr> 
-                    {myPokemons.map(pokemon => (
-                        <tr key={pokemon.id}>
+                    {myPokemons.map((pokemon, index) => (
+                        <tr key={index}>
                             <td className="id-td">{pokemon.id}</td>
                             <td className="td-name">{pokemon.name}</td>
                             <td className="image-td">
@@ -59,6 +58,10 @@ export default function CatchPoke() {
                                     <Link to={`/pokedex/poke-info/${pokemon.id}`} className="link">
                                         Informations
                                     </Link>
+                                </button>
+
+                                <button onClick={()=>{}}>
+                                    Remove
                                 </button>
                             </td>
                         </tr>
