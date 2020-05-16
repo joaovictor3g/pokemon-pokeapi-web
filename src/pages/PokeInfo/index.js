@@ -8,9 +8,12 @@ import Modal from '../../components/Modal';
 import PokemonDetail from '../../components/PokemonDetail';
 
 import './styles.css';
+import PokeballImeg from '../../assets/pokeball.svg';
 
 export default function PokeInfo(props) {
     const { id } = props.match.params;
+
+    const existsPokemon = JSON.parse(sessionStorage.getItem('pokeball'));
 
     const [front, setFront] = useState('');
     const [name, setName] = useState('');
@@ -26,6 +29,7 @@ export default function PokeInfo(props) {
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
+        
     }, []);
 
     async function loadPokemonById() {
@@ -66,6 +70,12 @@ export default function PokeInfo(props) {
             
         <div className="principal">
             <header className="pokemon-name">
+                {!existsPokemon ? null :
+                    existsPokemon.map((poke) => (
+                        name === poke.name ? 
+                            <img key={poke.id} src={PokeballImeg} alt="pokeball" className="pokeball-catched" /> :
+                            null
+                ))}
                 {capitalizeFirstLetter(name)} N° {id}
                 <button className="info-question"
                     onClick={()=>setDetailIsVisible(true)}

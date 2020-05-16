@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaAngleRight } from 'react-icons/fa';
 
 import api from '../../services/api';
@@ -9,7 +9,7 @@ export default function SearchPoke(props) {
     
     const [name_, setName] = useState('');
     const [pokeImage, setImage] = useState('');
-
+    const history = useHistory();
     
     useEffect(() => {
         searchByName();//eslint-disable-next-line
@@ -24,6 +24,49 @@ export default function SearchPoke(props) {
     }
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function catchPokemon(name) {
+        let pokeball = JSON.parse(sessionStorage.getItem('pokeball'));
+
+        if(!pokeball)
+            pokeball = [];
+        
+        if(pokeball.length===6) {
+            alert('Full');
+            history.push('/pokedex/your-pokemons');
+            return;
+        }
+
+        for(var i = 0; i < pokeball.length; i++) {
+            if(pokeball[i].id === id) {
+                alert(`${capitalizeFirstLetter(name)} already caught!!!`)
+                return;
+            }
+        }
+
+        function getRandom() {
+            return (Math.floor(Math.random() * 2));
+        }
+        
+        if(getRandom() === 0){ 
+            alert(`${capitalizeFirstLetter(name)} WAS CAUGHT!!!`)
+        } else {
+            alert(`${capitalizeFirstLetter(name)} WAS NOT CAUGHT!!!`)
+            return;
+        }
+        
+        
+        pokeball.push({
+            id,
+            name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+        });
+
+     
+
+        sessionStorage.setItem('pokeball', JSON.stringify(pokeball));
+        
     }
     
     return (
@@ -62,7 +105,7 @@ export default function SearchPoke(props) {
                                 Informations
                             </Link>
                             </button>
-                            <button>Catch</button>
+                            <button onClick={()=>catchPokemon(name_)}>Catch</button>
                         </td>
                     </tr>
                     

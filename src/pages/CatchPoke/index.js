@@ -17,6 +17,10 @@ export default function CatchPoke() {
         
     }
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <>
         <div className="Header-container">
@@ -46,7 +50,7 @@ export default function CatchPoke() {
                     {myPokemons.map((pokemon, index) => (
                         <tr key={index}>
                             <td className="id-td">{pokemon.id}</td>
-                            <td className="td-name">{pokemon.name}</td>
+                            <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
                             <td className="image-td">
                                 <img 
                                     src={pokemon.image} 

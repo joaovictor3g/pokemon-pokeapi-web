@@ -74,7 +74,6 @@ export default function Pokedex() {
     }
 
     //Mandando os pokemons que quero capturar pro sessionstorage
-    let indice = 6;
     function catchPokemon(name, id) {
         let pokeball = JSON.parse(sessionStorage.getItem('pokeball'));
 
@@ -85,6 +84,13 @@ export default function Pokedex() {
             alert('Full');
             history.push('/pokedex/your-pokemons');
             return;
+        }
+
+        for(var i = 0; i < pokeball.length; i++) {
+            if(pokeball[i].id === id) {
+                alert(`${capitalizeFirstLetter(name)} already caught!!!`)
+                return;
+            }
         }
 
         function getRandom() {
