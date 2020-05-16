@@ -49,8 +49,9 @@ export default function CatchPoke() {
                             <td className="td-name">{pokemon.name}</td>
                             <td className="image-td">
                                 <img 
-                                src={pokemon.image} 
-                                alt="pokemon"/>
+                                    src={pokemon.image} 
+                                    alt="pokemon"
+                                />
                             </td>
 
                             <td className="actions-table">

@@ -38,7 +38,7 @@ export default function PokemonDetail({ id, div_id = "modal", onClose = () => {}
         <div id={div_id} className="modal-2" onClick={handleOutsideClick}>
             <div className="container-2">
                 <button type="button" className="close-2" onClick={onClose}>
-                    <MdCancel size={30} color="#FFF" />
+                    <MdCancel size={30} color="#e60000" />
                 </button>
                 
                 <div className="content">{uniqueDescription}</div>
