@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaAngleRight, FaQuestion, FaInfoCircle } from 'react-icons/fa';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 import api from '../../services/api';
 
@@ -25,7 +26,10 @@ export default function PokeInfo(props) {
     const [types, setTypes] = useState([]);   
     const [abilities, setAbilities] = useState([]); 
     const [moves, setMoves] = useState([]);
-    const [indice, setIndice] = useState(0);
+    const [indiceAbility, setIndiceAbilityDescription] = useState(0);
+    const [indexMove, setIndexMove] = useState(0);
+
+    const [letMovesAppear, setMovesAppear] = useState(false);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [detailIsVisible, setDetailIsVisible] = useState(false);
@@ -33,7 +37,7 @@ export default function PokeInfo(props) {
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
-        
+    
     }, []);
 
     async function loadPokemonById() {
@@ -57,10 +61,18 @@ export default function PokeInfo(props) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function letVisible(e) {
-        if(e.target.value===indice) 
-            setIsMoveDescription(true);
-      
+    //Funcao que mostra a descricao das habilidades. 
+    function letModalVisible(index) {
+        setIsModalVisible(true);
+        setIndiceAbilityDescription(index);
+        return;
+    }
+
+    //funcao que mostra a descricao dos movimentos.
+    function letMovesVisible(index) {
+        setIsMoveDescription(true);
+        setIndexMove(index);
+        return;
     }
 
     return (
@@ -127,23 +139,20 @@ export default function PokeInfo(props) {
                                 <span key={index}>
                                     {capitalizeFirstLetter(ability.ability.name)}
                                     <button 
-                                        onClick={()=>setIsModalVisible(true)}
+                                        onClick={()=>letModalVisible(index)}
                                         id={index}
                                         type="button"
-                                        onChange={e=>setIndice(e.target.id)}
-                                        value={indice}
                                     >
                                         <FaQuestion size={15} color="#00bfff" />
-                                    </button>    
-
-                                    {isModalVisible && index===indice ? 
-                                        <Modal onClose={()=>setIsModalVisible(false)}>
-                                            {ability.ability.url}
-                        
-                                        </Modal>: 
-                                    null}
+                                    </button>  
                                 </span>
                         ))}
+                        {isModalVisible ? 
+                            <Modal onClose={()=>setIsModalVisible(false)}>
+                                {abilities[indiceAbility].ability.url}
+            
+                            </Modal>: 
+                        null}
                         </span>
                     </div>
                 </div>
@@ -152,31 +161,45 @@ export default function PokeInfo(props) {
 
         <div className="move-informations">
             <header className="moves" >
-                Moves
+                <p>Moves</p>
+                <button 
+                    onClick={()=>setMovesAppear(true)}
+                    className="move-btn"
+                    id="moves-btn"
+                
+                >
+                    <MdKeyboardArrowDown size={40} color="#FFF" />
+                </button>
             </header>
-            
-            <div className="move-description">
-                {moves.map((move, index) => (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                    <div className="move-name-description" key={index}>
-                        <p>{move.move.name}</p>
-                        <button
-                            onClick={()=>setIsMoveDescription(true)}
-                            id="mover"
-                        >
-                            <FaInfoCircle size={30} color="blue" />
-                        </button>
+            {letMovesAppear ?
+                <div className="move-description">
+                    {moves.map((move, index) => (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                        <div className="move-name-description" id={move.move.name} key={index}>
+                            <p>{move.move.name}</p>
+                            <button
+                                onClick={()=>letMovesVisible(index)}
+                                id="mover"
+                            >
+                                <FaInfoCircle size={30} color="blue" />
+                            </button>
 
-                        
-                    </div>
-                ))}
-                {isMoveDescriptionVisible ? 
-                    <MoveDescription
-                        onClose={()=>setIsMoveDescription(false)}   
-                    >
-                    </MoveDescription>:
-                null}
-            </div>
+
+                        </div>
+                    ))}
+                    {isMoveDescriptionVisible ? 
+                        document.getElementById(moves[indexMove].move.name).innerText = 
+                        <MoveDescription
+                            onClose={()=>setIsMoveDescription(false)}   
+                        >
+                            {moves[indexMove].move.url}
+                        </MoveDescription>:
+                    null}
+                </div>:
+            
+        null}
+    
         </div>
+               
         </>
     )
 }

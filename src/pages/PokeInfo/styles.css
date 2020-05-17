@@ -234,7 +234,9 @@ p.steel {
     color: #FFF;
     font-size: 20px;
     padding: 20px;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .move-informations .move-description {
@@ -260,4 +262,14 @@ p.steel {
     background: transparent;
     border: 0;
     width: 20px;
+}
+
+.move-btn {
+    background: transparent;
+    border: 0;
+    
+}
+
+.move-btn svg {
+    
 }

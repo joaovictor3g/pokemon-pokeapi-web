@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function MoveDescription() {
+import axios from 'axios';
+
+export default function MoveDescription({ id, children }) {
+    const [elements, setElements] = useState('');
+
+    useEffect(() => {
+        getMoveDescription();
+    }, []);
+
+    async function getMoveDescription() {
+        const response = await axios.get(children);
+
+        setElements(response.data.flavor_text_entries[2].flavor_text);
+
+        console.log(response.data); 
+    }
+
     return (
         <div>
-            <h1>Move description</h1>
+            <h1>{elements}</h1>
         </div>
     )
 }

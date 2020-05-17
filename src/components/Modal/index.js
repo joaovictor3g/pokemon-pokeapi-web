@@ -12,7 +12,7 @@ export default function Modal({ id="modal", onClose = () => {}, children, open }
 
     useEffect(() => {
         getIdOfAbility();//eslint-disable-next-line
-        console.log(children);
+        
     }, []);
     
     async function getIdOfAbility() {
