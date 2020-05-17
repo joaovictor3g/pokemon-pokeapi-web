@@ -14,6 +14,7 @@ import PokeballImeg from '../../assets/pokeball.svg';
 
 export default function PokeInfo(props) {
     const { id } = props.match.params;
+    let pokeballHd;
 
     const existsPokemon = JSON.parse(sessionStorage.getItem('pokeball'));
 
@@ -37,7 +38,7 @@ export default function PokeInfo(props) {
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
-    
+        is_img();
     }, []);
 
     async function loadPokemonById() {
@@ -53,7 +54,7 @@ export default function PokeInfo(props) {
         setAbilities(response.data.abilities);
         setFront(response.data.sprites.front_default);
         setMoves(response.data.moves);
-        //console.log(response.data.moves);
+        
 
     }
 
@@ -74,6 +75,23 @@ export default function PokeInfo(props) {
         setIndexMove(index);
         return;
     }
+
+    function is_img() {
+        try {
+            if(id < 10)
+                pokeballHd = require(`../../images/00${id}.png`);
+            else if(id < 100)
+                pokeballHd = require(`../../images/0${id}.png`);
+            else 
+                pokeballHd = require(`../../images/${id}.png`);
+            return true;
+
+        } catch(err) {
+            pokeballHd = []
+            return false;
+        }
+    }
+    
 
     return (
         <>  
@@ -115,8 +133,21 @@ export default function PokeInfo(props) {
 
             </header>
             <div className="aside">
-                <img src={front} alt="front" className="image2"/>
-                <img src={back} alt="back" className="image2"/>
+                <img src={
+                    id < 10 ?
+                        is_img() ? require(`../../images/00${id}.png`): front :
+                        
+                    id < 100 ?
+                        is_img() ? require(`../../images/0${id}.png`) : front :
+                    
+                    is_img() ? require(`../../images/${id}.png`) : front
+                
+                } 
+                    id="image2"
+                    alt="front" 
+                    className="image2"
+                />
+                <img src={front} alt="back" className="image2"/>
 
                 
                 <div className="image-and-info">
