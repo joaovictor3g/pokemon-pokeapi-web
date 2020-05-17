@@ -9,7 +9,8 @@ div {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    border: 0;
+    border: 1px solid crimson;
+    color: crimson;
 }
 
 .search-button-container {
@@ -23,6 +24,11 @@ div {
     border: 0;
     background: crimson;
     padding: 18px;
+}
+
+.link-to-pokemon-catched {
+    text-decoration: none;
+    font-size: 20px;
 }
 
 .pokeball-image {

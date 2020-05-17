@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaAngleRight } from 'react-icons/fa';
 
+import './styles.css';
+
 export default function CatchPoke() {
     const [myPokemons, setMyPokemons] = useState([]);
 
@@ -38,41 +40,49 @@ export default function CatchPoke() {
         </div>
 
         <div className="principal-container">
-        <table className="table-container" border="1">
-                <tbody>
-                    <tr className="initial-tr">
-                        <td>ID</td>
-                        <td>Nome</td>
-                        <td></td>
-                        <td></td>
-                        
-                    </tr> 
-                    {myPokemons.map((pokemon, index) => (
-                        <tr key={index}>
-                            <td className="id-td">{pokemon.id}</td>
-                            <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
-                            <td className="image-td">
-                                <img 
-                                    src={pokemon.image} 
-                                    alt="pokemon"
-                                />
-                            </td>
+        {!myPokemons? 
+            <span className="catched-pokemons">
+                There are not pokemons yet!!!<br></br>
+                <Link to="/pokedex" className="link-to-catch">
+                    Catch'em all!!!
+                </Link>
+                </span>
+            : <table className="table-container" border="1">
+                    <tbody>
+                        <tr className="initial-tr">
+                            <td>ID</td>
+                            <td>Nome</td>
+                            <td></td>
+                            <td></td>
 
-                            <td className="actions-table">
-                                <button  className="btn-1">
-                                    <Link to={`/pokedex/poke-info/${pokemon.id}`} className="link">
-                                        Informations
-                                    </Link>
-                                </button>
+                        </tr> 
+                        {myPokemons.map((pokemon, index) => (
+                            <tr key={index}>
+                                <td className="id-td">{pokemon.id}</td>
+                                <td className="td-name">{capitalizeFirstLetter(pokemon.name)}</td>
+                                <td className="image-td">
+                                    <img 
+                                        src={pokemon.image} 
+                                        alt="pokemon"
+                                    />
+                                </td>
 
-                                <button onClick={()=>{}}>
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
-                      ))}
+                                <td className="actions-table">
+                                    <button  className="btn-1">
+                                        <Link to={`/pokedex/poke-info/${pokemon.id}`} className="link">
+                                            Informations
+                                        </Link>
+                                    </button>
+
+                                    <button onClick={()=>{}}>
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
-            </table>   
+            </table>  
+            } 
         </div>
         </>
     )

@@ -1,0 +1,9 @@
+.principal-container .catched-pokemons {
+    font-size: 30px;
+    font-weight: bold;
+    color: #737373;
+}
+
+.link-to-catch {
+    text-decoration: none;
+}

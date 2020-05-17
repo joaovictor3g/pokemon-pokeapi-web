@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaAngleRight, FaQuestion } from 'react-icons/fa';
+import { FaAngleRight, FaQuestion, FaInfoCircle } from 'react-icons/fa';
 
 import api from '../../services/api';
 
 import Modal from '../../components/Modal';
 import PokemonDetail from '../../components/PokemonDetail';
+import MoveDescription from '../../components/MoveDescription';
 
 import './styles.css';
 import PokeballImeg from '../../assets/pokeball.svg';
@@ -23,9 +24,12 @@ export default function PokeInfo(props) {
     const [back, setBack] = useState('');
     const [types, setTypes] = useState([]);   
     const [abilities, setAbilities] = useState([]); 
+    const [moves, setMoves] = useState([]);
+    const [indice, setIndice] = useState(0);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [detailIsVisible, setDetailIsVisible] = useState(false);
+    const [isMoveDescriptionVisible, setIsMoveDescription] = useState(false);
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
@@ -44,7 +48,8 @@ export default function PokeInfo(props) {
         setTypes(response.data.types);
         setAbilities(response.data.abilities);
         setFront(response.data.sprites.front_default);
-
+        setMoves(response.data.moves);
+        //console.log(response.data.moves);
 
     }
 
@@ -52,20 +57,26 @@ export default function PokeInfo(props) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function letVisible(e) {
+        if(e.target.value===indice) 
+            setIsMoveDescription(true);
+      
+    }
+
     return (
         <>  
-            <div className="Header-container">
-                <Link to="/" className="link-home">
-                    Home
-                </Link>
-                <FaAngleRight size={20} color="#FFF" />
-                <Link to={`/pokedex/`} className="pokedex-button">
-                    Pokedex
-                </Link>
-                <FaAngleRight size={20} color="#FFF" />
-                <Link to={`/pokedex/poke-info/${id}`} className="pokedex-button">
-                    PokeInfo
-                </Link>
+        <div className="Header-container">
+            <Link to="/" className="link-home">
+                Home
+            </Link>
+            <FaAngleRight size={20} color="#FFF" />
+            <Link to={`/pokedex/`} className="pokedex-button">
+                Pokedex
+            </Link>
+            <FaAngleRight size={20} color="#FFF" />
+            <Link to={`/pokedex/poke-info/${id}`} className="pokedex-button">
+                PokeInfo
+            </Link>
         </div>
             
         <div className="principal">
@@ -110,27 +121,60 @@ export default function PokeInfo(props) {
                             Weight: <p>{weight/10} kg</p>
                             Order: <p>{order}</p>
                         </span>
-
+                           
                         <span className="abilities"><p>Abilities:</p> 
                             {abilities.map((ability, index) => (
                                 <span key={index}>
                                     {capitalizeFirstLetter(ability.ability.name)}
                                     <button 
                                         onClick={()=>setIsModalVisible(true)}
+                                        id={index}
+                                        type="button"
+                                        onChange={e=>setIndice(e.target.id)}
+                                        value={indice}
                                     >
                                         <FaQuestion size={15} color="#00bfff" />
                                     </button>    
 
-                                    {isModalVisible ? 
+                                    {isModalVisible && index===indice ? 
                                         <Modal onClose={()=>setIsModalVisible(false)}>
                                             {ability.ability.url}
-
-                                        </Modal> : 
+                        
+                                        </Modal>: 
                                     null}
                                 </span>
-                        ))}</span>
+                        ))}
+                        </span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div className="move-informations">
+            <header className="moves" >
+                Moves
+            </header>
+            
+            <div className="move-description">
+                {moves.map((move, index) => (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                    <div className="move-name-description" key={index}>
+                        <p>{move.move.name}</p>
+                        <button
+                            onClick={()=>setIsMoveDescription(true)}
+                            id="mover"
+                        >
+                            <FaInfoCircle size={30} color="blue" />
+                        </button>
+
+                        
+                    </div>
+                ))}
+                {isMoveDescriptionVisible ? 
+                    <MoveDescription
+                        onClose={()=>setIsMoveDescription(false)}   
+                    >
+                    </MoveDescription>:
+                null}
             </div>
         </div>
         </>

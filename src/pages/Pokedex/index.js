@@ -128,6 +128,10 @@ export default function Pokedex() {
             <Link to="/pokedex" className="pokedex-button">
                 Pokedex
             </Link>
+            <FaAngleRight size={20} color="#FFF" />
+            <Link to="/pokedex/your-pokemons" className="pokedex-button">
+                See your pokemons   
+            </Link> 
         </div>
         
         <div className="principal-container"> 
