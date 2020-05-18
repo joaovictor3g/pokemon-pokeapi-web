@@ -15,10 +15,12 @@ export default function SearchPoke(props) {
         searchByName();//eslint-disable-next-line
     }, []);
 
+    //Pegando o pokemon pelo ID
     async function searchByName() {
         const response = await api.get(`/pokemon/${id}`);
 
         setName(response.data.name);
+        
         setImage(response.data.sprites.front_default);
 
     }
@@ -26,6 +28,7 @@ export default function SearchPoke(props) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    //Captura de pokemons
     function catchPokemon(name) {
         let pokeball = JSON.parse(sessionStorage.getItem('pokeball'));
 

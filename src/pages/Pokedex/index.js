@@ -21,19 +21,20 @@ export default function Pokedex() {
     const history = useHistory();
 
     useEffect(() => {
+        //1° renderização de todos os pokemons existentes.
         renderPokemons();
-      
+        
     }, []);
 
+    //Consumindo os dados da api
     async function renderPokemons(offset = 0) {
         const response = await api.get(`/pokemon/?offset=${offset}&limit=5`);
-
         setPokemons(response.data.results); 
-
         setCount(response.data.count);
         
     }
     
+    //Função de paginação posterior
     function nextPage(e) {
         e.preventDefault();
 
@@ -45,22 +46,24 @@ export default function Pokedex() {
         renderPokemons(pages+5);
     }
 
+    //Função de paginação anterior
     function goToPreviousPage(e) {
         e.preventDefault();
 
         if(pages <= 0)
             return;
-        //setLimit(limit-1);
+        
         setPages(pages-5);
         
         renderPokemons(pages-5);
     }
 
-
+    //Primeira letra maiuscula
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    //Pesquisar pokemon pelo nome ou id
     async function getId(name) {
         try {
             name = name.toLowerCase();
@@ -69,7 +72,8 @@ export default function Pokedex() {
         
         } catch (err) {
             alert(`Pokemon not added yet!!!!${name}`)
-            }
+        
+        }
 
     }
 
@@ -93,10 +97,12 @@ export default function Pokedex() {
             }
         }
 
+        //Retorno de um valor random
         function getRandom() {
             return (Math.floor(Math.random() * 2));
-        }
+        }   
         
+        //Tentativa de dificultar a captura de pokemons
         if(getRandom() === 0){ 
             alert(`${capitalizeFirstLetter(name)} WAS CAUGHT!!!`)
         } else {
@@ -104,18 +110,24 @@ export default function Pokedex() {
             return;
         }
         
-        
+        //Colocando um pokemon em um array de objetos
         pokeball.push({
             id,
             name,
             image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
         });
 
-     
-
+        //Guardando no sessionStorage
         sessionStorage.setItem('pokeball', JSON.stringify(pokeball));
         
+        //Chamando a renderização novamente para que as pokebolas apareçam em tela
         renderPokemons(pages);
+    }
+
+    function loadData() {
+        return (
+            <p>Loading...</p>
+        );
     }
 
     return (

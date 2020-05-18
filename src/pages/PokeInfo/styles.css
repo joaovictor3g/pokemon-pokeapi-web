@@ -267,9 +267,15 @@ p.steel {
 .move-btn {
     background: transparent;
     border: 0;
+    width: 20px;
     
 }
 
+
 .move-btn svg {
     
+}
+
+.moves p {
+    font-weight: bold;
 }

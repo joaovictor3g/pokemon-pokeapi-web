@@ -8,17 +8,18 @@ export default function CatchPoke() {
     const [myPokemons, setMyPokemons] = useState([]);
 
     useEffect(() => {
+        //1° renderização de todos os pokemons
         getMyPokemons();
     }, []);
 
+    //Pegando valores do sessionStorage e passado sua resposta para um estado.
     function getMyPokemons() {
         const response = JSON.parse(sessionStorage.getItem('pokeball'));
 
         setMyPokemons(response);
-    
-        
     }
 
+    //Função que deixa a primeira linha de uma string maiuscula.
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }

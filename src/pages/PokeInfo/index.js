@@ -13,6 +13,7 @@ import './styles.css';
 import PokeballImeg from '../../assets/pokeball.svg';
 
 export default function PokeInfo(props) {
+    //Pegando o id que vem na rota
     const { id } = props.match.params;
     let pokeballHd;
 
@@ -38,13 +39,12 @@ export default function PokeInfo(props) {
 
     useEffect(() => {
         loadPokemonById();//eslint-disable-next-line
-        is_img();
+        //is_img();
     }, []);
 
     async function loadPokemonById() {
         const response = await api.get(`/pokemon/${id}`);
 
-        
         setName(response.data.name);
         setWeight(response.data.weight);
         setOrder(response.data.order);
@@ -76,6 +76,7 @@ export default function PokeInfo(props) {
         return;
     }
 
+    //verificar se existe imagem de alta resolução, se não renderiza as imagens da propria API
     function is_img() {
         try {
             if(id < 10)
@@ -92,6 +93,10 @@ export default function PokeInfo(props) {
         }
     }
     
+    function invertButtonMoves() {
+        setMovesAppear(true);
+        document.getElementById('moves-btn').innerHTML = <MdKeyboardArrowUp size={20} color="#FFF" />
+    }
 
     return (
         <>  
@@ -147,7 +152,7 @@ export default function PokeInfo(props) {
                     alt="front" 
                     className="image2"
                 />
-                <img src={front} alt="back" className="image2"/>
+                <img src={back} alt="back" className="image2"/>
 
                 
                 <div className="image-and-info">
@@ -194,7 +199,7 @@ export default function PokeInfo(props) {
             <header className="moves" >
                 <p>Moves</p>
                 <button 
-                    onClick={()=>setMovesAppear(true)}
+                    onClick={()=>invertButtonMoves()}
                     className="move-btn"
                     id="moves-btn"
                 
