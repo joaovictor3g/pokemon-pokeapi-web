@@ -42,6 +42,7 @@ export default function PokeInfo(props) {
         //is_img();
     }, []);
 
+    //carregar pokemon em tela pegando o id que vem na rota.
     async function loadPokemonById() {
         const response = await api.get(`/pokemon/${id}`);
 
@@ -95,7 +96,7 @@ export default function PokeInfo(props) {
     
     function invertButtonMoves() {
         setMovesAppear(true);
-        document.getElementById('moves-btn').innerHTML = <MdKeyboardArrowUp size={20} color="#FFF" />
+        document.getElementById('moves-btn').innerHTML = "botão invertido"
     }
 
     return (
@@ -223,9 +224,9 @@ export default function PokeInfo(props) {
                         </div>
                     ))}
                     {isMoveDescriptionVisible ? 
-                        document.getElementById(moves[indexMove].move.name).innerText = 
                         <MoveDescription
-                            onClose={()=>setIsMoveDescription(false)}   
+                            onClose={()=>setIsMoveDescription(false)}  
+                            id={moves[indexMove].move.name} 
                         >
                             {moves[indexMove].move.url}
                         </MoveDescription>:
