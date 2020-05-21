@@ -62,7 +62,15 @@
     height: 150px;
     position: absolute;
     right: 500px;
-    top: 150px;
+    top: 180px;
+}
+
+.name-my-equip {
+    position: absolute;
+    right: 340px;
+    top: 230px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .field-btn {
@@ -76,4 +84,13 @@
 
 .field-image {
     margin: 20px;
+}
+
+.enemy-pokemons {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.poke-btn[disabled] {
+    opacity: 0.5;
 }

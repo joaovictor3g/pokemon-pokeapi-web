@@ -7,16 +7,39 @@ import BattleField from '../../assets/battlegrass.png'
 
 export default function Battle () {
   const pokeballs = JSON.parse(sessionStorage.getItem('pokeball'))
-  const [chooseEnemyPokemon, setChooseEnemyPokemon] = useState(24)
+
   const [chooseMyPokemons, setMyPokemons] = useState(pokeballs[0].id)
+  const [nameMyPokemons, setNameMyPokemons] = useState(pokeballs[0].name)
+  const [lifeMyPokemons, setLifeMyPokemons] = useState(pokeballs[0].life)
 
   const enemies = [
-    { id: 24, name: 'arbok', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png' },
-    { id: 52, name: 'meowth', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png' },
-    { id: 71, name: 'victreebel', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png' },
-    { id: 108, name: 'lickitung', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png' },
-    { id: 110, name: 'weezing', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png' },
-    { id: 112, name: 'rhydon', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png' }]
+    { id: 24, name: 'arbok', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png', life: 100 },
+    { id: 52, name: 'meowth', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png', life: 100 },
+    { id: 71, name: 'victreebel', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png', life: 100 },
+    { id: 108, name: 'lickitung', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png', life: 100 },
+    { id: 110, name: 'weezing', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png', life: 100 },
+    { id: 112, name: 'rhydon', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png', life: 100 }]
+
+  const [chooseEnemyPokemon, setChooseEnemyPokemon] = useState(24)
+  const [nameEnemyPokemons, setNameEnemyPokemons] = useState('arbok')
+  const [lifeEnemies, setLifeEnemies] = useState(enemies[0].life)
+
+  function nameAndIdMyPokemons (id, name, life) {
+    setNameMyPokemons(name)
+    setMyPokemons(id)
+    setLifeMyPokemons(life)
+  }
+
+  function nameAndIdMyEnemies (id, name, life) {
+    setNameEnemyPokemons(name)
+    setChooseEnemyPokemon(id)
+    setLifeEnemies(life)
+  }
+
+  // Primeira letra maiuscula
+  function capitalizeFirstLetter (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
 
   return (
     <>
@@ -50,7 +73,7 @@ export default function Battle () {
               <tr>
                 <td>
                   {pokeballs.map(poke => (
-                    <button key={poke.id} className="poke-btn" onClick={() => setMyPokemons(poke.id)}>
+                    <button key={poke.id} className="poke-btn" onClick={() => nameAndIdMyPokemons(poke.id, poke.name, poke.life)}>
                       <img src={poke.image} alt={poke.name} className="pokemons-low"/>
                     </button>
 
@@ -66,19 +89,26 @@ export default function Battle () {
                         alt="poke"
                         className="pokemon-on-arena"
                       />
+                      <p className="enemy-pokemons">{capitalizeFirstLetter(nameEnemyPokemons)}{`(${lifeEnemies}/100)`}</p>
                       <img
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${chooseMyPokemons}.png`}
                         alt="poke"
                         className="pokemon-on-arena-2"
                       />
+                      <p className="name-my-equip">{capitalizeFirstLetter(nameMyPokemons)}{`(${lifeMyPokemons}/100)`}</p>
                     </div>
                   </div>
-                  <button className="field-btn" onClick={() => {}}>Attack</button>
+                  <button className="field-btn" onClick={() => setLifeEnemies(lifeEnemies - 10)}>Attack</button>
                 </td>
 
                 <td>
                   {enemies.map(enemy => (
-                    <button key={enemy.id} className="poke-btn" onClick={() => setChooseEnemyPokemon(enemy.id)}>
+                    <button
+                      disabled={lifeEnemies === 0}
+                      key={enemy.id}
+                      className={`poke-btn ${enemy.name}`}
+                      onClick={() => nameAndIdMyEnemies(enemy.id, enemy.name, enemy.life)
+                      }>
                       <img src={enemy.image} alt={enemy.name} className="pokemons-low"/>
                     </button>
                   ))}

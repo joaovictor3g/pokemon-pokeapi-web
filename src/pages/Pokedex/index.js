@@ -14,6 +14,7 @@ export default function Pokedex () {
   const [pages, setPages] = useState(0);
   const [count, setCount] = useState(0)
   const [name, setName] = useState([])
+  const [hp, setHP] = useState(1)
 
   const history = useHistory()
 
@@ -107,7 +108,8 @@ export default function Pokedex () {
     pokeball.push({
       id,
       name,
-      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+      life: 100
     })
 
     // Guardando no sessionStorage
@@ -175,7 +177,8 @@ export default function Pokedex () {
                 <td className="image-td">
                   <img
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1 + pages}.png`}
-                    alt="pokemon"/>
+                    alt="pokemon"
+                  />
                 </td>
 
                 <td className="actions-table">
