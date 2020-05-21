@@ -6,6 +6,7 @@ import Pokedex from './pages/Pokedex'
 import PokeInfo from './pages/PokeInfo'
 import SearchPoke from './pages/SearchPoke'
 import CatchPoke from './pages/CatchPoke'
+import Battle from './pages/Batle'
 
 export default function Routes () {
   return (
@@ -16,6 +17,7 @@ export default function Routes () {
         <Route path="/pokedex/poke-info/:id" component={PokeInfo} />
         <Route path="/pokedex/search/:id" component={SearchPoke} />
         <Route path="/pokedex/your-pokemons" component={CatchPoke} />
+        <Route path="/pokedex/battle" component={Battle} />
       </Switch>
     </BrowserRouter>
   )

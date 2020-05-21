@@ -25,7 +25,9 @@ export default function Pokedex () {
   // Consumindo os dados da api
   async function renderPokemons (offset = 0) {
     const response = await api.get(`/pokemon/?offset=${offset}&limit=5`)
+
     setPokemons(response.data.results)
+
     setCount(response.data.count)
   }
 
@@ -33,7 +35,9 @@ export default function Pokedex () {
   function nextPage (e) {
     e.preventDefault()
 
-    if (pages === count) { return }
+    if (pages === count) {
+      return
+    }
 
     setPages(pages + 5)
 
@@ -127,6 +131,10 @@ export default function Pokedex () {
         <Link to="/pokedex/your-pokemons" className="pokedex-button">
                 See your pokemons
         </Link>
+        <FaAngleRight size={20} color="#FFF" />
+        <Link to="/pokedex/battle" className="pokedex-button">
+              Battle
+        </Link>
       </div>
 
       <div className="principal-container">
@@ -149,10 +157,7 @@ export default function Pokedex () {
               sessionStorage.getItem('pokeball')).map((poke, index) => (
               <img key={index + 1} src={PokeballImg} alt="pokemon" className="pokeball-image"/>
 
-            )
-            )
-          }
-
+            ))}
         </div>
         <table className="table-container" border="1">
           <tbody>
