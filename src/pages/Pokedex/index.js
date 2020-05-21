@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { FaAngleRight, FaSearch, FaInfoCircle } from 'react-icons/fa'
+import { FaAngleRight, FaSearch } from 'react-icons/fa'
 
 import api from '../../services/api'
 
@@ -176,11 +176,11 @@ export default function Pokedex () {
                 <td className="actions-table">
                   <button className="btn-1">
                     <Link to={`/pokedex/poke-info/${index + 1 + pages}`} className="link">
-                                        Informations
+                        Informations
                     </Link>
                   </button>
                   <button onClick={() => catchPokemon(pokemon.name, index + 1 + pages)}>
-                                    Catch
+                        Catch
                   </button>
                 </td>
               </tr>

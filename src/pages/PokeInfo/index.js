@@ -1,7 +1,8 @@
+/* eslint-disable indent */
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaAngleRight, FaQuestion, FaInfoCircle } from 'react-icons/fa'
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 
 import api from '../../services/api'
 
@@ -16,6 +17,7 @@ export default function PokeInfo (props) {
   // Pegando o id que vem na rota
   // eslint-disable-next-line react/prop-types
   const { id } = props.match.params
+  // eslint-disable-next-line no-unused-vars
   let pokeballHd
 
   const existsPokemon = JSON.parse(sessionStorage.getItem('pokeball'))
@@ -78,7 +80,13 @@ export default function PokeInfo (props) {
   // eslint-disable-next-line camelcase
   function is_img () {
     try {
-      if (id < 10) { pokeballHd = require(`../../images/00${id}.png`) } else if (id < 100) { pokeballHd = require(`../../images/0${id}.png`) } else { pokeballHd = require(`../../images/${id}.png`) }
+      if (id < 10) {
+          pokeballHd = require(`../../images/00${id}.png`)
+    } else if (id < 100) {
+        pokeballHd = require(`../../images/0${id}.png`)
+    } else {
+        pokeballHd = require(`../../images/${id}.png`)
+    }
       return true
     } catch (err) {
       pokeballHd = []
