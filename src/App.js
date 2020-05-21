@@ -1,14 +1,14 @@
-import React from 'react';
-import Routes from './routes';
+import React from 'react'
+import Routes from './routes'
 
-import './global.css';
+import './global.css'
 
-function App() {
+function App () {
   return (
     <div className="App">
-        <Routes />
+      <Routes />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
