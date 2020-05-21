@@ -6,7 +6,7 @@ import Pokedex from './pages/Pokedex'
 import PokeInfo from './pages/PokeInfo'
 import SearchPoke from './pages/SearchPoke'
 import CatchPoke from './pages/CatchPoke'
-import Battle from './pages/Batle'
+import Battle from './pages/Battle'
 
 export default function Routes () {
   return (

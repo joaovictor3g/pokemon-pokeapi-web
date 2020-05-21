@@ -6,12 +6,13 @@
 .pokemons-image .table-pokemons {
     width: 100%;
     text-align: center;
+    
     border-collapse: collapse;
 }
 
 .pokemons-image .table-pokemons tbody .initial-tr {
     color: #FFF;
-    background: #000;
+    background: #333333;
     height: 80px;
     font-size: 20px;
     font-weight: bold;
@@ -47,8 +48,8 @@
 
 .principal-div-over .other-image {
     position:absolute; 
-    top:60px; 
-    left:520px;
+    top:70px; 
+    left:540px;
 }
 
 .pokemon-on-arena {
@@ -60,7 +61,7 @@
     width: 150px;
     height: 150px;
     position: absolute;
-    right: 510px;
+    right: 500px;
     top: 150px;
 }
 
@@ -71,4 +72,8 @@
     background: crimson;
     border: 0;
     border-radius: 5px;
+}
+
+.field-image {
+    margin: 20px;
 }
