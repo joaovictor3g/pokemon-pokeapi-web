@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaAngleRight } from 'react-icons/fa'
 
 import './styles.css'
+
 import BattleField from '../../assets/battlegrass.png'
 
 export default function Battle () {
@@ -21,13 +22,45 @@ export default function Battle () {
     }
   }, [])
 
-  const enemies = [
-    { id: 24, name: 'arbok', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png', life: 100 },
-    { id: 52, name: 'meowth', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png', life: 100 },
-    { id: 71, name: 'victreebel', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png', life: 100 },
-    { id: 108, name: 'lickitung', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png', life: 100 },
-    { id: 110, name: 'weezing', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png', life: 100 },
-    { id: 112, name: 'rhydon', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png', life: 100 }]
+  const enemies =
+    [
+      {
+        id: 24,
+        name: 'arbok',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png',
+        life: 100
+      },
+      {
+        id: 52,
+        name: 'meowth',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png',
+        life: 100
+      },
+      {
+        id: 71,
+        name: 'victreebel',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png',
+        life: 100
+      },
+      {
+        id: 108,
+        name: 'lickitung',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png',
+        life: 100
+      },
+      {
+        id: 110,
+        name: 'weezing',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png',
+        life: 100
+      },
+      {
+        id: 112,
+        name: 'rhydon',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png',
+        life: 100
+      }
+    ]
 
   const [chooseEnemyPokemon, setChooseEnemyPokemon] = useState(24)
   const [nameEnemyPokemons, setNameEnemyPokemons] = useState('arbok')
