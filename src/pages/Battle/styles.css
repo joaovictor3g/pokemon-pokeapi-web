@@ -94,3 +94,8 @@
 .poke-btn[disabled] {
     opacity: 0.5;
 }
+
+.not-battle {
+    font-size: 28px;
+    font-weight: bold;
+}

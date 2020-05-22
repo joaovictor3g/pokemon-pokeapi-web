@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FaAngleRight } from 'react-icons/fa'
 
@@ -8,9 +8,18 @@ import BattleField from '../../assets/battlegrass.png'
 export default function Battle () {
   const pokeballs = JSON.parse(sessionStorage.getItem('pokeball'))
 
-  const [chooseMyPokemons, setMyPokemons] = useState(pokeballs[0].id)
-  const [nameMyPokemons, setNameMyPokemons] = useState(pokeballs[0].name)
-  const [lifeMyPokemons, setLifeMyPokemons] = useState(pokeballs[0].life)
+  const [chooseMyPokemons, setMyPokemons] = useState(1)
+  const [nameMyPokemons, setNameMyPokemons] = useState('')
+  const [lifeMyPokemons, setLifeMyPokemons] = useState(0)
+
+  // Verifica se existe algum pokemon capturado no session storage
+  useEffect(() => {
+    if (pokeballs) {
+      setMyPokemons(pokeballs[0].id)
+      setNameMyPokemons(pokeballs[0].name)
+      setLifeMyPokemons(pokeballs[0].life)
+    }
+  }, [])
 
   const enemies = [
     { id: 24, name: 'arbok', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png', life: 100 },
@@ -117,7 +126,7 @@ export default function Battle () {
               </tr>
             </tbody>
           </table>
-          : <p>There are not Pokemons yet!!!</p>}
+          : <p className="not-battle">You can not battle. There are not Pokemons yet!!!</p>}
       </div>
     </>
   )
