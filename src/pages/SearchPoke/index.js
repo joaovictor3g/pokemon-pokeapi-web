@@ -61,7 +61,8 @@ export default function SearchPoke (props) {
     pokeball.push({
       id,
       name,
-      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+      life: 100
     })
 
     sessionStorage.setItem('pokeball', JSON.stringify(pokeball))
