@@ -14,7 +14,6 @@ export default function Pokedex () {
   const [pages, setPages] = useState(0);
   const [count, setCount] = useState(0)
   const [name, setName] = useState([])
-  const [hp, setHP] = useState(1)
 
   const history = useHistory()
 
