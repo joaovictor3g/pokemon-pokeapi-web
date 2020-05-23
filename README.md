@@ -22,6 +22,9 @@ This is an app just made for practice, using the [PokeApi v2](https://github.com
 - Commit changes: `git commit -m 'feat: My new feature'`
 - Push branch: `git push origin my-feature`
 
+### 🛬 Routes
+- Coming soon
+
 ### 📝 License
 MIT license. See license on [LICENSE](LICENSE) 
 
