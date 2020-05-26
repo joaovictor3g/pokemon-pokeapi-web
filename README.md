@@ -25,6 +25,9 @@ This is an app just made for practice, using the [PokeApi v2](https://github.com
 ### 🛬 Routes
 - Coming soon
 
+### Images HD
+- To put images in HD, mkdir src/images and paste all images inside.
+
 ### 📝 License
 MIT license. See license on [LICENSE](LICENSE) 
 

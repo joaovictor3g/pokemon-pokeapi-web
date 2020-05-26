@@ -12,6 +12,7 @@ import MoveDescription from '../../components/MoveDescription'
 
 import './styles.css'
 import PokeballImeg from '../../assets/pokeball.svg'
+import Interrogacao from '../../assets/interrogacao.png'
 
 export default function PokeInfo (props) {
   // Pegando o id que vem na rota
@@ -53,7 +54,7 @@ export default function PokeInfo (props) {
     setWeight(response.data.weight)
     setOrder(response.data.order)
     setHeight(response.data.height)
-    setBack(response.data.sprites.back_default)
+    setBack(response.data.sprites.back_default || Interrogacao)
     setTypes(response.data.types)
     setAbilities(response.data.abilities)
     setFront(response.data.sprites.front_default)
