@@ -6,6 +6,20 @@
 
 This is an app just made for practice, using the [PokeApi v2](https://github.com/PokeAPI/pokeapi/tree/master/pokemon_v2)
 
+| Tela Inicial  | Pokedex   |   
+|---------------|-----------| 
+<img src="assets/telaInicial.png" alt="tela inicial" width="500px"> | <img src="assets/pokedex.png" alt="pokedex" width="500px">
+
+
+| Pokedex(paginada)  | Pokemon (infos)   |   
+|--------------------|-------------------| 
+<img src="assets/pokedex2.png" alt="pokdex-2" width="500px"> | <img src="assets/pokeinfodetail.png" alt="pokedex" width="500px">
+
+| Pokemon(descrição)  | Batalha     |   
+|---------------------|-------------| 
+<img src="assets/pokedescription.png" alt="pokdex-2" width="500px"> | <img src="assets/battle.png" alt="pokedex" width="500px">
+
+
 ### 📱 Techs
 - ReactJS
 - Axios
