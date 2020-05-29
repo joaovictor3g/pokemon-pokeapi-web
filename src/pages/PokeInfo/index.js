@@ -2,12 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaAngleRight, FaQuestion, FaInfoCircle } from 'react-icons/fa'
-import { MdKeyboardArrowDown } from 'react-icons/md'
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
 import api from '../../services/api'
 
+// Descrição do pokemon
 import Modal from '../../components/Modal'
+
+// Descrição das abilidades
 import PokemonDetail from '../../components/PokemonDetail'
+
+// Descrição dos movimentos
 import MoveDescription from '../../components/MoveDescription'
 
 import './styles.css'
@@ -35,11 +40,12 @@ export default function PokeInfo (props) {
   const [indiceAbility, setIndiceAbilityDescription] = useState(0)
   const [indexMove, setIndexMove] = useState(0)
 
-  const [letMovesAppear, setMovesAppear] = useState(false)
-
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [detailIsVisible, setDetailIsVisible] = useState(false)
   const [isMoveDescriptionVisible, setIsMoveDescription] = useState(false)
+
+  // Estado pra verificar se botão foi clicado
+  const [moveAppear, setMoveAppear] = useState(false)
 
   useEffect(() => {
     loadPokemonById()// eslint-disable-next-line
@@ -93,11 +99,6 @@ export default function PokeInfo (props) {
       pokeballHd = []
       return false
     }
-  }
-
-  function invertButtonMoves () {
-    setMovesAppear(true)
-    document.getElementById('moves-btn').innerHTML = 'botão invertido'
   }
 
   return (
@@ -199,16 +200,26 @@ export default function PokeInfo (props) {
       <div className="move-informations">
         <header className="moves" >
           <p>Moves</p>
-          <button
-            onClick={() => invertButtonMoves()}
+          {!moveAppear
+          ? <button
+            onClick={() => setMoveAppear(true)}
             className="move-btn"
             id="moves-btn"
 
           >
-            <MdKeyboardArrowDown size={40} color="#FFF" />
+
+          <MdKeyboardArrowDown size={40} color="#FFF" />
           </button>
+          : <button
+              onClick={() => setMoveAppear(false)}
+              className="move-btn"
+
+            >
+              <MdKeyboardArrowUp size={40} color="#FFF" />
+          </button>
+          }
         </header>
-        {letMovesAppear
+        {moveAppear
           ? <div className="move-description">
             {moves.map((move, index) => (
               <div className="move-name-description" id={move.move.name} key={index}>
