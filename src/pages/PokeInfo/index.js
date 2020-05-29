@@ -155,7 +155,6 @@ export default function PokeInfo (props) {
           alt="front"
           className="image2"
           />
-          <img src={back} alt="back" className="image2"/>
 
           <div className="image-and-info">
             <header className="types-pokemons">
@@ -196,6 +195,8 @@ export default function PokeInfo (props) {
           </div>
         </div>
       </div>
+
+      <div className="moves-and-images">
 
       <div className="move-informations">
         <header className="moves" >
@@ -247,6 +248,10 @@ export default function PokeInfo (props) {
 
       </div>
 
+      <div className="images-shiny-and-back">
+
+      </div>
+      </div>
     </>
   )
 }
