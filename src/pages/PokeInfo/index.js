@@ -220,82 +220,82 @@ export default function PokeInfo (props) {
 
       <div className="moves-and-images">
 
-      <div className="move-informations">
-        <header className="moves" >
-          <p>Moves</p>
-          {!moveAppear
-          ? <button
-            onClick={() => setMoveAppear(true)}
-            className="move-btn"
-            id="moves-btn"
-
-          >
-
-          <MdKeyboardArrowDown size={40} color="#FFF" />
-          </button>
-          : <button
-              onClick={() => setMoveAppear(false)}
+        <div className="move-informations">
+          <header className="moves" >
+            <p>Moves</p>
+            {!moveAppear
+            ? <button
+              onClick={() => setMoveAppear(true)}
               className="move-btn"
+              id="moves-btn"
 
             >
-              <MdKeyboardArrowUp size={40} color="#FFF" />
-          </button>
-          }
-        </header>
-        {moveAppear
-          ? <div className="move-description">
-            {moves.map((move, index) => (
-              <div className="move-name-description" id={move.move.name} key={index}>
-                <p>{move.move.name}</p>
-                <button
-                  onClick={() => letMovesVisible(index)}
-                  id="mover"
-                >
-                  <FaInfoCircle size={30} color="blue" />
-                </button>
 
-              </div>
-            ))}
-            {isMoveDescriptionVisible
-              ? <MoveDescription
-                onClose={() => setIsMoveDescription(false)}
-                id={moves[indexMove].move.name}
+            <MdKeyboardArrowDown size={40} color="#FFF" />
+            </button>
+            : <button
+                onClick={() => setMoveAppear(false)}
+                className="move-btn"
+
               >
-                {moves[indexMove].move.url}
-              </MoveDescription>
-              : null}
-          </div>
+                <MdKeyboardArrowUp size={40} color="#FFF" />
+            </button>
+            }
+          </header>
+          {moveAppear
+            ? <div className="move-description">
+              {moves.map((move, index) => (
+                <div className="move-name-description" id={move.move.name} key={index}>
+                  <p>{move.move.name}</p>
+                  <button
+                    onClick={() => letMovesVisible(index)}
+                    id="mover"
+                  >
+                    <FaInfoCircle size={30} color="blue" />
+                  </button>
 
+                </div>
+              ))}
+              {isMoveDescriptionVisible
+                ? <MoveDescription
+                  onClose={() => setIsMoveDescription(false)}
+                  id={moves[indexMove].move.name}
+                >
+                  {moves[indexMove].move.url}
+                </MoveDescription>
+                : null}
+            </div>
+
+            : null}
+
+        </div>
+
+        <div className="images-shiny-and-back">
+          <header className="moves" >
+              <span>Other Images</span>
+              {!isImages
+              ? <button
+                onClick={() => setImages(true)}
+                className="move-btn"
+                id="moves-btn"
+              >
+              <MdKeyboardArrowDown size={40} color="#FFF" />
+              </button>
+              : <button
+                  onClick={() => setImages(false)}
+                  className="move-btn"
+                >
+                  <MdKeyboardArrowUp size={40} color="#FFF" />
+              </button>
+              }
+          </header>
+            {isImages
+            ? <>
+            <span className="shiny">Shiny Version</span>
+            <img src={shinyFront} alt="shiny-front" className="other-images"/>
+          </>
           : null}
-
-      </div>
-
-      <div className="images-shiny-and-back">
-      <header className="moves" >
-          <span>Other Images</span>
-          {!isImages
-          ? <button
-            onClick={() => setImages(true)}
-            className="move-btn"
-            id="moves-btn"
-
-          >
-
-          <MdKeyboardArrowDown size={40} color="#FFF" />
-          </button>
-          : <button
-              onClick={() => setImages(false)}
-              className="move-btn"
-
-            >
-              <MdKeyboardArrowUp size={40} color="#FFF" />
-          </button>
-          }
-      </header>
-      <p>Shiny Version</p>
-      <img src={shinyFront} alt="shiny-front" className="other-images"/>
-
-      </div>
+          </div>
       </div>
     </>
   )
