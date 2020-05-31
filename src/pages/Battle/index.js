@@ -12,6 +12,8 @@ export default function Battle () {
   const [chooseMyPokemons, setMyPokemons] = useState(1)
   const [nameMyPokemons, setNameMyPokemons] = useState('')
   const [lifeMyPokemons, setLifeMyPokemons] = useState(0)
+  const [isLifeZero, setLifeZero] = useState(false)
+  const [opacity, setOpacity] = useState('')
 
   // Verifica se existe algum pokemon capturado no session storage
   useEffect(() => {
@@ -83,6 +85,16 @@ export default function Battle () {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
+  // Função que diminui a vida do outro pokemon
+  function shrinkLife () {
+    if (lifeEnemies === 0) {
+      setLifeZero(true)
+      setOpacity('generate-opacity')
+      return
+    }
+    setLifeEnemies(lifeEnemies - 10)
+  }
+
   return (
     <>
       <div className="Header-container">
@@ -140,15 +152,15 @@ export default function Battle () {
                       <p className="name-my-equip">{capitalizeFirstLetter(nameMyPokemons)}{`(${lifeMyPokemons}/100)`}</p>
                     </div>
                   </div>
-                  <button className="field-btn" onClick={() => setLifeEnemies(lifeEnemies - 10)}>Attack</button>
+                  <button className="field-btn" onClick={shrinkLife}>Attack</button>
                 </td>
 
                 <td>
-                  {enemies.map(enemy => (
+                  {enemies.map((enemy, idx) => (
                     <button
-                      disabled={lifeEnemies === 0}
+                      disabled={opacity === 'generate-opacity'}
                       key={enemy.id}
-                      className={`poke-btn ${enemy.name}`}
+                      className={`poke-btn ${opacity}`}
                       onClick={() => nameAndIdMyEnemies(enemy.id, enemy.name, enemy.life)
                       }>
                       <img src={enemy.image} alt={enemy.name} className="pokemons-low"/>

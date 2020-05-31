@@ -91,7 +91,7 @@
     font-weight: bold;
 }
 
-.poke-btn[disabled] {
+.generate-opacity {
     opacity: 0.5;
 }
 
