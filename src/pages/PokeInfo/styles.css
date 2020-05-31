@@ -54,7 +54,7 @@
 }
 
 .image2 {
-    width: 400px;
+    width: 600px;
     height: 400px;
     background: #DDD;
     border-radius: 5px;
@@ -290,12 +290,25 @@ p.steel {
 .images-shiny-and-back {
     width: 50%;
     margin: 20px;
-    background: #FFF;
     height: 70px;
-    padding: 0;
     background:  #000;
-
+    
 }
+
+.images-shiny-and-back .moves {
+    color: #FFF;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.other-images {
+    width: 400px;
+}
+
 
 @media(max-width: 840px) {
     .principal .aside {

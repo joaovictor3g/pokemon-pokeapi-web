@@ -95,7 +95,7 @@ export default function Battle () {
         </Link>
         <FaAngleRight size={20} color="#FFF" />
         <Link to="/pokedex/your-pokemons" className="pokedex-button">
-                See your pokemons
+                Pokemons
         </Link>
         <FaAngleRight size={20} color="#FFF" />
         <Link to="/pokedex/battle" className="pokedex-button">

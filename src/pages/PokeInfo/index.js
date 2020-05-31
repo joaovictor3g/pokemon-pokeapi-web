@@ -28,24 +28,45 @@ export default function PokeInfo (props) {
 
   const existsPokemon = JSON.parse(sessionStorage.getItem('pokeball'))
 
+  // Estado que guarda a imagem de frente do pokemon.
   const [front, setFront] = useState('')
+
+  // Estado que guarda o nome do pokemon.
   const [name, setName] = useState('')
+
+  // Estado que guarda a altura do pokemon.
   const [height, setHeight] = useState('')
+
+  // Estado que guarda o peso do pokemon.
   const [weight, setWeight] = useState('')
+
   const [order, setOrder] = useState(1)
+
+  // Estado que a imagem de costas do pokemon.
   const [back, setBack] = useState('')
+
+  // Estado que guarda o(s) tipo(s) do pokemon
   const [types, setTypes] = useState([])
   const [abilities, setAbilities] = useState([])
   const [moves, setMoves] = useState([])
   const [indiceAbility, setIndiceAbilityDescription] = useState(0)
   const [indexMove, setIndexMove] = useState(0)
 
+  const [shinyFront, setShinyFront] = useState('')
+
+  // Modal que mostra a descriçãp do pokemon
   const [isModalVisible, setIsModalVisible] = useState(false)
+
+  // Modal que mostra a descrição de  habilidade do pokemon
   const [detailIsVisible, setDetailIsVisible] = useState(false)
+
+  // Descrição dos moves dos pokemons
   const [isMoveDescriptionVisible, setIsMoveDescription] = useState(false)
 
   // Estado pra verificar se botão foi clicado
   const [moveAppear, setMoveAppear] = useState(false)
+
+  const [isImages, setImages] = useState(false)
 
   useEffect(() => {
     loadPokemonById()// eslint-disable-next-line
@@ -61,6 +82,7 @@ export default function PokeInfo (props) {
     setOrder(response.data.order)
     setHeight(response.data.height)
     setBack(response.data.sprites.back_default || Interrogacao)
+    setShinyFront(response.data.sprites.front_shiny || Interrogacao)
     setTypes(response.data.types)
     setAbilities(response.data.abilities)
     setFront(response.data.sprites.front_default)
@@ -249,6 +271,29 @@ export default function PokeInfo (props) {
       </div>
 
       <div className="images-shiny-and-back">
+      <header className="moves" >
+          <span>Other Images</span>
+          {!isImages
+          ? <button
+            onClick={() => setImages(true)}
+            className="move-btn"
+            id="moves-btn"
+
+          >
+
+          <MdKeyboardArrowDown size={40} color="#FFF" />
+          </button>
+          : <button
+              onClick={() => setImages(false)}
+              className="move-btn"
+
+            >
+              <MdKeyboardArrowUp size={40} color="#FFF" />
+          </button>
+          }
+      </header>
+      <p>Shiny Version</p>
+      <img src={shinyFront} alt="shiny-front" className="other-images"/>
 
       </div>
       </div>
